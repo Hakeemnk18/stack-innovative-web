@@ -1,0 +1,365 @@
+{
+  "brand": {
+    "name": "Stack Innovative",
+    "tagline": "Web & App Dev",
+    "logoText": "SI",
+    "email": "hello@stackinnovative.com",
+    "phone": "+1 (555) 000-0000",
+    "location": "Remote — Worldwide"
+  },
+  "nav": {
+    "links": [
+      { "label": "Services", "href": "#services" },
+      { "label": "Works", "href": "#works" },
+      { "label": "Tech", "href": "#tech" },
+      { "label": "About", "href": "#about" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "cta": { "label": "Get a Quote", "href": "#contact" }
+  },
+  "hero": {
+    "availableBadge": "Available for New Projects",
+    "headline": "We Build Digital",
+    "headlineAccent": "Experiences",
+    "headline2": "That Convert",
+    "subtitle": "Full-stack web & app development that drives real business results. From concept to deployment — we make it happen.",
+    "cta1": { "label": "View Our Work", "href": "#works" },
+    "cta2": { "label": "Get a Quote", "href": "#contact" },
+    "socialProof": "Trusted by 30+ clients worldwide"
+  },
+  "services": {
+    "badge": "What We Do",
+    "heading": "Services Built for Growth",
+    "subheading": "End-to-end digital solutions tailored to your business needs",
+    "items": [
+      {
+        "id": "web-dev",
+        "title": "Web Development",
+        "description": "Custom websites and web applications built with modern frameworks — fast, scalable, and SEO-optimized from day one.",
+        "icon": "Globe",
+        "color": "#0066FF",
+        "tags": ["React", "Next.js", "Node.js"],
+        "href": "#contact"
+      },
+      {
+        "id": "app-dev",
+        "title": "App Development",
+        "description": "Native and cross-platform mobile apps for iOS and Android that deliver seamless, delightful user experiences.",
+        "icon": "Smartphone",
+        "color": "#7C3AED",
+        "tags": ["React Native", "Flutter", "Swift"],
+        "href": "#contact"
+      },
+      {
+        "id": "ui-ux",
+        "title": "UI/UX Design",
+        "description": "User-centered design that converts visitors into customers. From wireframes to pixel-perfect production interfaces.",
+        "icon": "Palette",
+        "color": "#00D4FF",
+        "tags": ["Figma", "Prototyping", "Design Systems"],
+        "href": "#contact"
+      },
+      {
+        "id": "ecommerce",
+        "title": "E-Commerce Solutions",
+        "description": "Online stores that sell. Shopify, custom platforms, payment integration, and conversion-rate optimization built in.",
+        "icon": "ShoppingCart",
+        "color": "#10B981",
+        "tags": ["Shopify", "WooCommerce", "Stripe"],
+        "href": "#contact"
+      },
+      {
+        "id": "seo",
+        "title": "SEO & Performance",
+        "description": "Get found on Google. Technical SEO, Core Web Vitals optimization, and content strategy that ranks and retains.",
+        "icon": "TrendingUp",
+        "color": "#F59E0B",
+        "tags": ["Core Web Vitals", "Schema", "Analytics"],
+        "href": "#contact"
+      },
+      {
+        "id": "maintenance",
+        "title": "Support & Maintenance",
+        "description": "Ongoing support, security updates, and performance monitoring to keep your digital presence running flawlessly.",
+        "icon": "Shield",
+        "color": "#EF4444",
+        "tags": ["24/7 Support", "Security", "Updates"],
+        "href": "#contact"
+      }
+    ]
+  },
+  "works": {
+    "badge": "Portfolio",
+    "heading": "Our Recent Work",
+    "subheading": "A selection of projects that showcase our capabilities and craft",
+    "filters": ["All", "Web App", "Mobile App", "E-Commerce", "Design"],
+    "items": [
+      {
+        "id": "project-1",
+        "title": "FinTech Dashboard",
+        "category": "Web App",
+        "description": "Real-time financial analytics dashboard with custom data visualizations and role-based access control.",
+        "image": "https://placehold.co/700x480/0F172A/0066FF?text=FinTech+Dashboard",
+        "gradient": "from-blue-600 to-blue-900",
+        "tags": ["React", "Node.js", "PostgreSQL"],
+        "href": "#"
+      },
+      {
+        "id": "project-2",
+        "title": "StyleHive Store",
+        "category": "E-Commerce",
+        "description": "High-converting Shopify store with custom theme development, 40% higher conversion rate post-launch.",
+        "image": "https://placehold.co/700x480/0F172A/7C3AED?text=StyleHive+Store",
+        "gradient": "from-purple-600 to-purple-900",
+        "tags": ["Shopify", "Liquid", "Stripe"],
+        "href": "#"
+      },
+      {
+        "id": "project-3",
+        "title": "FitPulse App",
+        "category": "Mobile App",
+        "description": "Cross-platform fitness tracking app — 4.8 stars on the App Store with workout builder and social features.",
+        "image": "https://placehold.co/700x480/0F172A/00D4FF?text=FitPulse+App",
+        "gradient": "from-cyan-600 to-cyan-900",
+        "tags": ["React Native", "Firebase", "Redux"],
+        "href": "#"
+      },
+      {
+        "id": "project-4",
+        "title": "NovaSaaS Landing",
+        "category": "Design",
+        "description": "High-performance SaaS marketing website with animated sections and optimized conversion flows.",
+        "image": "https://placehold.co/700x480/0F172A/10B981?text=NovaSaaS",
+        "gradient": "from-emerald-600 to-emerald-900",
+        "tags": ["Next.js", "Framer Motion", "Tailwind"],
+        "href": "#"
+      },
+      {
+        "id": "project-5",
+        "title": "TableFlex Booking",
+        "category": "Web App",
+        "description": "Restaurant reservation management system with real-time table availability and automated confirmations.",
+        "image": "https://placehold.co/700x480/0F172A/F59E0B?text=TableFlex",
+        "gradient": "from-amber-600 to-amber-900",
+        "tags": ["React", "Express", "MongoDB"],
+        "href": "#"
+      },
+      {
+        "id": "project-6",
+        "title": "Nexora Corporate",
+        "category": "Design",
+        "description": "Professional corporate website with headless CMS integration, multi-language support, and SEO optimization.",
+        "image": "https://placehold.co/700x480/0F172A/EF4444?text=Nexora+Corp",
+        "gradient": "from-red-600 to-red-900",
+        "tags": ["Next.js", "Contentful", "SEO"],
+        "href": "#"
+      }
+    ]
+  },
+  "stats": [
+    { "value": "50+", "label": "Projects Delivered", "sublabel": "Across all industries" },
+    { "value": "30+", "label": "Happy Clients", "sublabel": "And counting" },
+    { "value": "3+", "label": "Years Experience", "sublabel": "In the industry" },
+    { "value": "99%", "label": "Client Satisfaction", "sublabel": "Rated by clients" }
+  ],
+  "techStack": {
+    "badge": "Our Stack",
+    "heading": "Technologies We Master",
+    "subheading": "Modern, battle-tested technologies to build reliable, scalable products",
+    "categories": [
+      {
+        "id": "frontend",
+        "category": "Frontend",
+        "icon": "Monitor",
+        "color": "#0066FF",
+        "techs": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Framer Motion"]
+      },
+      {
+        "id": "backend",
+        "category": "Backend",
+        "icon": "Server",
+        "color": "#7C3AED",
+        "techs": ["Node.js", "Express", "Python", "Django", "GraphQL", "REST APIs"]
+      },
+      {
+        "id": "mobile",
+        "category": "Mobile",
+        "icon": "Smartphone",
+        "color": "#00D4FF",
+        "techs": ["React Native", "Flutter", "Swift", "Kotlin", "Expo", "Firebase"]
+      },
+      {
+        "id": "cloud",
+        "category": "Cloud & Tools",
+        "icon": "Cloud",
+        "color": "#10B981",
+        "techs": ["AWS", "Vercel", "Docker", "PostgreSQL", "MongoDB", "Supabase"]
+      }
+    ]
+  },
+  "about": {
+    "badge": "About Us",
+    "heading": "Builders at Heart",
+    "headingAccent": "Craftsmen by Nature",
+    "description": "Stack Innovative is a boutique web & app development studio that turns bold ideas into powerful digital products. We combine deep technical expertise with strategic thinking to deliver solutions that don't just look great — they perform.",
+    "description2": "From startups launching their MVP to established businesses scaling their platforms, we partner with clients who are serious about their digital presence and growth.",
+    "image": "https://placehold.co/600x700/040714/0066FF?text=Stack+Innovative+Team",
+    "highlights": [
+      { "icon": "Zap", "title": "Fast Delivery", "desc": "Agile sprints with clear milestones and transparent timelines." },
+      { "icon": "Lock", "title": "Secure by Design", "desc": "Security-first development practices on every project." },
+      { "icon": "RefreshCw", "title": "Iterative Process", "desc": "We refine and iterate until every detail is perfect." },
+      { "icon": "HeartHandshake", "title": "True Partnership", "desc": "Your success is our success — we're invested in your growth." }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "heading": "What Our Clients Say",
+    "subheading": "Real feedback from real clients who trusted us with their projects",
+    "items": [
+      {
+        "id": "t1",
+        "name": "Alex Morgan",
+        "role": "CEO, TechVentures",
+        "initials": "AM",
+        "color": "#0066FF",
+        "rating": 5,
+        "text": "Stack Innovative delivered our dashboard ahead of schedule and the quality was exceptional. They understood our vision immediately and executed with precision. Highly recommend."
+      },
+      {
+        "id": "t2",
+        "name": "Sarah Chen",
+        "role": "Founder, StyleHive",
+        "initials": "SC",
+        "color": "#7C3AED",
+        "rating": 5,
+        "text": "Our Shopify store conversion rate increased by 40% after the redesign. Their attention to UX detail and performance optimization was truly impressive. Best investment we made."
+      },
+      {
+        "id": "t3",
+        "name": "Marcus Johnson",
+        "role": "CTO, FitPulse",
+        "initials": "MJ",
+        "color": "#10B981",
+        "rating": 5,
+        "text": "The mobile app they built has 4.8 stars on the App Store. Clean code, great communication throughout, and they genuinely cared about the end product. Exceptional team."
+      },
+      {
+        "id": "t4",
+        "name": "Priya Patel",
+        "role": "Marketing Director, Nexora",
+        "initials": "PP",
+        "color": "#F59E0B",
+        "rating": 5,
+        "text": "From the first call to launch, the experience was seamless. They brought ideas we hadn't even thought of and the final site is exactly what we needed. 10/10 would work with again."
+      },
+      {
+        "id": "t5",
+        "name": "David Torres",
+        "role": "Owner, TableFlex",
+        "initials": "DT",
+        "color": "#EF4444",
+        "rating": 5,
+        "text": "The booking system they built completely transformed our operations. Fewer no-shows, automated reminders, and our staff loves the interface. ROI was incredible."
+      },
+      {
+        "id": "t6",
+        "name": "Lisa Kim",
+        "role": "CEO, NovaSaaS",
+        "initials": "LK",
+        "color": "#00D4FF",
+        "rating": 5,
+        "text": "Working with Stack Innovative felt like having an in-house team. Fast turnaround, beautiful design, and they nailed our brand identity. Our leads doubled in the first month."
+      }
+    ]
+  },
+  "ctaBanner": {
+    "badge": "Let's Work Together",
+    "heading": "Ready to Build Something Great?",
+    "subheading": "Tell us about your project and let's bring your vision to life.",
+    "cta1": { "label": "Start a Project", "href": "#contact" },
+    "cta2": { "label": "View Our Work", "href": "#works" }
+  },
+  "contact": {
+    "badge": "Get in Touch",
+    "heading": "Start Your Project",
+    "subheading": "Tell us about your idea. We'll get back to you within 24 hours.",
+    "email": "hello@stackinnovative.com",
+    "phone": "+1 (555) 000-0000",
+    "location": "Remote — Worldwide",
+    "formLabels": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "service": "Service Needed",
+      "budget": "Estimated Budget",
+      "message": "Tell Us About Your Project",
+      "namePlaceholder": "John Smith",
+      "emailPlaceholder": "john@company.com",
+      "messagePlaceholder": "Describe your project, goals, and timeline...",
+      "submit": "Send Message",
+      "sending": "Sending..."
+    },
+    "services": ["Web Development", "App Development", "UI/UX Design", "E-Commerce", "SEO & Performance", "Support & Maintenance", "Other"],
+    "budgets": ["< $1,000", "$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Let's Discuss"],
+    "infoCards": [
+      { "icon": "Mail", "title": "Email Us", "value": "hello@stackinnovative.com" },
+      { "icon": "Clock", "title": "Response Time", "value": "Within 24 hours" },
+      { "icon": "Globe", "title": "We Work", "value": "Remotely — Worldwide" }
+    ]
+  },
+  "footer": {
+    "tagline": "Building digital excellence, one project at a time.",
+    "newsletter": {
+      "heading": "Stay Updated",
+      "placeholder": "Your email address",
+      "cta": "Subscribe"
+    },
+    "columns": [
+      {
+        "heading": "Services",
+        "links": [
+          { "label": "Web Development", "href": "#services" },
+          { "label": "App Development", "href": "#services" },
+          { "label": "UI/UX Design", "href": "#services" },
+          { "label": "E-Commerce", "href": "#services" },
+          { "label": "SEO & Performance", "href": "#services" }
+        ]
+      },
+      {
+        "heading": "Company",
+        "links": [
+          { "label": "About Us", "href": "#about" },
+          { "label": "Our Work", "href": "#works" },
+          { "label": "Testimonials", "href": "#testimonials" },
+          { "label": "Blog", "href": "#" },
+          { "label": "Careers", "href": "#" }
+        ]
+      },
+      {
+        "heading": "Policies",
+        "links": [
+          { "label": "Privacy Policy", "href": "#" },
+          { "label": "Terms of Service", "href": "#" },
+          { "label": "Cookie Policy", "href": "#" },
+          { "label": "Refund Policy", "href": "#" }
+        ]
+      },
+      {
+        "heading": "Help",
+        "links": [
+          { "label": "Contact Us", "href": "#contact" },
+          { "label": "FAQ", "href": "#" },
+          { "label": "Support", "href": "#" },
+          { "label": "Project Inquiry", "href": "#contact" }
+        ]
+      }
+    ],
+    "social": [
+      { "platform": "Instagram", "href": "#", "icon": "Instagram" },
+      { "platform": "Twitter / X", "href": "#", "icon": "Twitter" },
+      { "platform": "LinkedIn", "href": "#", "icon": "Linkedin" },
+      { "platform": "GitHub", "href": "#", "icon": "Github" },
+      { "platform": "YouTube", "href": "#", "icon": "Youtube" }
+    ],
+    "copyright": "Stack Innovative. Trademark Protected. All Rights Reserved."
+  }
+}

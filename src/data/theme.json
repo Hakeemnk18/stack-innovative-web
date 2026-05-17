@@ -1,0 +1,45 @@
+{
+  "colors": {
+    "primary": "#0066FF",
+    "primaryDark": "#0044CC",
+    "primaryLight": "#3385FF",
+    "secondary": "#7C3AED",
+    "secondaryDark": "#5B21B6",
+    "accent": "#00D4FF",
+    "success": "#10B981",
+    "warning": "#F59E0B",
+    "error": "#EF4444",
+    "background": "#FFFFFF",
+    "backgroundAlt": "#F8FAFC",
+    "backgroundAlt2": "#F1F5F9",
+    "heroBg": "#040714",
+    "heroDark": "#0A0F2C",
+    "surface": "#FFFFFF",
+    "surfaceAlt": "#F8FAFC",
+    "border": "#E2E8F0",
+    "borderDark": "#CBD5E1",
+    "textPrimary": "#0F172A",
+    "textSecondary": "#475569",
+    "textMuted": "#94A3B8",
+    "textLight": "#FFFFFF",
+    "gradientHero": "linear-gradient(135deg, #040714 0%, #0A0F2C 50%, #0D0528 100%)"
+  },
+  "typography": {
+    "fontFamily": "'Inter', 'Plus Jakarta Sans', sans-serif",
+    "displayFont": "'Plus Jakarta Sans', 'Inter', sans-serif"
+  },
+  "spacing": {
+    "navHeight": "72px",
+    "sectionPy": "96px",
+    "containerMax": "1280px",
+    "containerPx": "24px"
+  },
+  "borderRadius": {
+    "sm": "6px",
+    "md": "12px",
+    "lg": "16px",
+    "xl": "24px",
+    "pill": "9999px",
+    "nav": "9999px"
+  }
+}
