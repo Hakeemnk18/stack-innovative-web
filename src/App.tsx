@@ -13,7 +13,7 @@ import Contact from './components/sections/Contact'
 
 export default function App() {
   return (
-    <div className="w-full min-h-screen overflow-x-hidden">
+    <div className="w-full min-h-screen">
       <Navbar />
       <main className="w-full">
         <Hero />

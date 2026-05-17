@@ -37,7 +37,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
-  overflow-x: hidden;
+  /* overflow-x clip at root level without blocking momentum scrolling */
 }
 
 /* ─── Global dot background (the ONLY background on the page) ─── */
@@ -56,11 +56,12 @@ body {
   min-height: 100%;
 }
 
-/* Root fills the full viewport with no extra padding/margin */
+/* Root fills the full viewport — overflow clipped here, not on html/body */
 #root {
   width: 100%;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  /* clip doesn't create a scroll container so native page scroll stays smooth */
 }
 
 /* ─── Typography ──────────────────────────────────────────────── */

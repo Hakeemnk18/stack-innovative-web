@@ -10,35 +10,52 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 export default function Testimonials() {
   const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  const items = content.testimonials.items
 
+  /* ── Reliable active-index from DOM positions ── */
+  const syncIndex = useCallback(() => {
+    const el = scrollRef.current
+    if (!el || el.children.length === 0) return
+
+    const cards = Array.from(el.children) as HTMLElement[]
+
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) {
+      setActiveIndex(cards.length - 1)
+      return
+    }
+    if (el.scrollLeft <= 4) {
+      setActiveIndex(0)
+      return
+    }
+
+    const vpCenter = el.scrollLeft + el.clientWidth / 2
+    let best = 0
+    let bestDist = Infinity
+    cards.forEach((card, i) => {
+      const dist = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
+      if (dist < bestDist) { bestDist = dist; best = i }
+    })
+    setActiveIndex(best)
+  }, [])
+
+  /* ── Scroll to a specific card, centered ── */
   const scrollToIndex = useCallback((index: number) => {
-    const container = scrollRef.current
-    if (!container) return
-    const card = container.children[index] as HTMLElement
+    const el = scrollRef.current
+    if (!el) return
+    const cards = Array.from(el.children) as HTMLElement[]
+    const card = cards[index]
     if (!card) return
-    const offset = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2
-    container.scrollTo({ left: offset, behavior: 'smooth' })
+    const target = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2
+    el.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
     setActiveIndex(index)
   }, [])
 
   const go = (dir: 'prev' | 'next') => {
-    const items = content.testimonials.items
     const next = dir === 'next'
       ? Math.min(activeIndex + 1, items.length - 1)
       : Math.max(activeIndex - 1, 0)
     scrollToIndex(next)
   }
-
-  const handleScroll = useCallback(() => {
-    const el = scrollRef.current
-    if (!el) return
-    const n = content.testimonials.items.length
-    const cardW = (el.scrollWidth + 20) / n
-    const idx = Math.round(el.scrollLeft / cardW)
-    setActiveIndex(Math.max(0, Math.min(idx, n - 1)))
-  }, [])
-
-  const items = content.testimonials.items
 
   return (
     <section id="testimonials" className="py-24 lg:py-32">
@@ -53,46 +70,54 @@ export default function Testimonials() {
       {/* ── Carousel ── */}
       <motion.div {...inViewProps(0.05)} className="relative">
         {/* Prev */}
-        <motion.button
+        <button
           onClick={() => go('prev')}
           disabled={activeIndex === 0}
-          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.92 }}
+          className="absolute left-3 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-25 disabled:pointer-events-none"
         >
           <ChevronLeft size={18} />
-        </motion.button>
+        </button>
 
         {/* Next */}
-        <motion.button
+        <button
           onClick={() => go('next')}
           disabled={activeIndex === items.length - 1}
-          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.92 }}
+          className="absolute right-3 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-25 disabled:pointer-events-none"
         >
           <ChevronRight size={18} />
-        </motion.button>
+        </button>
 
         {/* Track */}
         <div
           ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-5 px-[max(24px,calc((100vw-1280px)/2+24px))] pb-4"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          onScroll={syncIndex}
+          className="flex overflow-x-auto gap-5 pb-4"
+          style={{
+            scrollSnapType: 'x mandatory',
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch',
+            paddingLeft: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
+            paddingRight: 'max(24px, calc((100vw - 1280px) / 2 + 24px))',
+          }}
         >
           {items.map((t, i) => (
             <motion.div
               key={t.id}
-              initial={{ opacity: 0, scale: 0.92 }}
+              initial={{ opacity: 0, scale: 0.93 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.06, ease: EASE }}
+              transition={{ duration: 0.4, delay: i * 0.04, ease: EASE }}
               whileHover={{ y: -5, boxShadow: '0 16px 48px rgba(0,102,255,0.1)' }}
-              className="flex-none w-[300px] sm:w-[360px] lg:w-[400px] snap-start card-base p-7 flex flex-col relative group"
+              className="card-base p-7 flex flex-col relative group"
+              style={{
+                flexShrink: 0,
+                width: 'clamp(280px, 38vw, 400px)',
+                scrollSnapAlign: 'center',
+              }}
             >
               {/* Quote icon */}
-              <div className="absolute top-6 right-6 opacity-6 group-hover:opacity-12 transition-opacity">
+              <div className="absolute top-6 right-6 opacity-5 group-hover:opacity-15 transition-opacity">
                 <Quote size={36} className="text-blue-600" />
               </div>
 
@@ -129,15 +154,16 @@ export default function Testimonials() {
       </motion.div>
 
       {/* Pagination dots */}
-      <div className="flex justify-center gap-2 mt-6">
+      <div className="flex justify-center items-center gap-2 mt-5">
         {items.map((_, i) => (
           <button
             key={i}
             onClick={() => scrollToIndex(i)}
-            className={`transition-all duration-300 rounded-full ${
+            aria-label={`Go to testimonial ${i + 1}`}
+            className={`rounded-full transition-all duration-300 ${
               i === activeIndex
                 ? 'w-6 h-2 bg-blue-600'
-                : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+                : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'
             }`}
           />
         ))}
@@ -145,7 +171,7 @@ export default function Testimonials() {
 
       {/* Rating strip */}
       <div className="max-w-7xl mx-auto px-6">
-        <motion.div {...inViewProps(0.1)} className="mt-12 text-center">
+        <motion.div {...inViewProps(0.1)} className="mt-10 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
             <div className="flex -space-x-2">
               {items.slice(0, 4).map((t) => (
