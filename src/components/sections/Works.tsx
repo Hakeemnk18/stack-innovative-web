@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowUpRight, ExternalLink } from 'lucide-react'
+import { ArrowUpRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import { inViewProps } from '../../lib/motion'
 import content from '../../data/content.json'
@@ -9,13 +9,45 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export default function Works() {
   const [activeFilter, setActiveFilter] = useState('All')
+  const [activeIndex, setActiveIndex] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
 
   const filtered = activeFilter === 'All'
     ? content.works.items
     : content.works.items.filter((w) => w.category === activeFilter)
 
+  const scrollToIndex = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const card = container.children[index] as HTMLElement
+    if (!card) return
+    const offset = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2
+    container.scrollTo({ left: offset, behavior: 'smooth' })
+    setActiveIndex(index)
+  }, [])
+
+  const go = (dir: 'prev' | 'next') => {
+    const next = dir === 'next'
+      ? Math.min(activeIndex + 1, filtered.length - 1)
+      : Math.max(activeIndex - 1, 0)
+    scrollToIndex(next)
+  }
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el || filtered.length === 0) return
+    const cardW = (el.scrollWidth + 20) / filtered.length
+    const idx = Math.round(el.scrollLeft / cardW)
+    setActiveIndex(Math.max(0, Math.min(idx, filtered.length - 1)))
+  }, [filtered.length])
+
+  useEffect(() => {
+    setActiveIndex(0)
+    scrollRef.current?.scrollTo({ left: 0 })
+  }, [activeFilter])
+
   return (
-    <section id="works" className="py-24 lg:py-32" style={{ background: 'rgba(241,245,249,0.55)' }}>
+    <section id="works" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           badge={content.works.badge}
@@ -24,7 +56,7 @@ export default function Works() {
         />
 
         {/* Filters */}
-        <motion.div {...inViewProps(0)} className="flex flex-wrap justify-center gap-2 mb-12">
+        <motion.div {...inViewProps(0)} className="flex flex-wrap justify-center gap-2 mb-10">
           {content.works.filters.map((filter) => (
             <motion.button
               key={filter}
@@ -37,24 +69,51 @@ export default function Works() {
             </motion.button>
           ))}
         </motion.div>
+      </div>
 
-        {/* Grid */}
-        <motion.div
-          layout
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      {/* ── Carousel ── */}
+      <motion.div {...inViewProps(0.05)} className="relative">
+        {/* Prev arrow */}
+        <motion.button
+          onClick={() => go('prev')}
+          disabled={activeIndex === 0}
+          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+        >
+          <ChevronLeft size={18} />
+        </motion.button>
+
+        {/* Next arrow */}
+        <motion.button
+          onClick={() => go('next')}
+          disabled={activeIndex === filtered.length - 1}
+          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+        >
+          <ChevronRight size={18} />
+        </motion.button>
+
+        {/* Scroll track */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-5 px-[max(24px,calc((100vw-1280px)/2+24px))] pb-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           <AnimatePresence mode="popLayout">
             {filtered.map((work, i) => (
               <motion.a
                 key={work.id}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.92 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.88 }}
-                transition={{ duration: 0.4, delay: i * 0.06, ease: EASE }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.4, delay: i * 0.05, ease: EASE }}
                 href={work.href}
                 whileHover={{ y: -6 }}
-                className="group relative overflow-hidden rounded-2xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-[0_16px_48px_rgba(0,102,255,0.12)] block transition-all"
+                className="flex-none w-[300px] sm:w-[360px] lg:w-[400px] snap-start group overflow-hidden rounded-2xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-[0_16px_48px_rgba(0,102,255,0.12)] transition-colors block"
               >
                 {/* Image */}
                 <div className="relative overflow-hidden aspect-[16/11]">
@@ -88,6 +147,7 @@ export default function Works() {
                   </motion.div>
                 </div>
 
+                {/* Content */}
                 <div className="p-5">
                   <h3 className="display-font font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {work.title}
@@ -101,13 +161,27 @@ export default function Works() {
               </motion.a>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
+      </motion.div>
 
-        {filtered.length === 0 && (
-          <div className="text-center py-20 text-slate-400">No projects in this category yet.</div>
-        )}
+      {/* ── Pagination dots ── */}
+      <div className="flex justify-center gap-2 mt-6">
+        {filtered.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollToIndex(i)}
+            className={`transition-all duration-300 rounded-full ${
+              i === activeIndex
+                ? 'w-6 h-2 bg-blue-600'
+                : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+            }`}
+          />
+        ))}
+      </div>
 
-        <motion.div {...inViewProps(0.1)} className="text-center mt-14">
+      {/* CTA */}
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div {...inViewProps(0.1)} className="text-center mt-12">
           <p className="text-slate-500 mb-5 text-base">Have a project in mind? Let's build it together.</p>
           <motion.button
             onClick={() => { document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}

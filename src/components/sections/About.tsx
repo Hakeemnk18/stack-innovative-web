@@ -18,7 +18,7 @@ const achievements = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32" style={{ background: 'rgba(241,245,249,0.55)' }}>
+    <section id="about" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 xl:gap-24 items-center">
 

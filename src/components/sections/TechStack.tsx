@@ -17,7 +17,7 @@ export default function TechStack() {
   const active = content.techStack.categories.find((c) => c.id === activeCategory)
 
   return (
-    <section id="tech" className="py-24 lg:py-32 bg-white">
+    <section id="tech" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           badge={content.techStack.badge}

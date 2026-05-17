@@ -24,8 +24,8 @@
   --gradient-hero: linear-gradient(135deg, #040714 0%, #0A0F2C 60%, #0D0528 100%);
   --gradient-primary: linear-gradient(135deg, #0066FF 0%, #7C3AED 100%);
   --nav-height: 72px;
-  --dot-color: #c8cfd8;
-  --dot-size: 1px;
+  --dot-color: #a0aab6;
+  --dot-size: 1.5px;
   --dot-space: 22px;
 }
 
@@ -36,25 +36,31 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: clip;
   width: 100%;
+  overflow-x: hidden;
 }
 
-/* ─── Global dot background ──────────────────────────────────── */
+/* ─── Global dot background (the ONLY background on the page) ─── */
 /*
-  Soft modern dot-grid: off-white base (#f9fafb) with barely-there
-  light-gray dots (#d1d5db @ 1px, 22px apart).
-  Same aesthetic as Linear, Vercel, and modern SaaS landing pages.
+  All light sections are transparent — this dot pattern is the universal
+  background. Dots: #a0aab6 (soft blue-gray) at 1.5px on #f8fafc base.
+  Perfectly legible but non-distracting. Dark sections cover it completely.
 */
 body {
   font-family: 'Inter', 'Plus Jakarta Sans', sans-serif;
   color: var(--color-text-primary);
-  background-color: #f9fafb;
-  background-image: radial-gradient(circle, #c8cfd8 1px, transparent 1px);
+  background-color: #f8fafc;
+  background-image: radial-gradient(circle, #a0aab6 1.5px, transparent 1.5px);
   background-size: 22px 22px;
-  background-attachment: local;
   width: 100%;
   min-height: 100%;
+}
+
+/* Root fills the full viewport with no extra padding/margin */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 /* ─── Typography ──────────────────────────────────────────────── */
@@ -507,8 +513,8 @@ body {
 }
 
 /* ─── Scrollbar ───────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 

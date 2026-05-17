@@ -1,32 +1,102 @@
+import { useState, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
-import { Quote } from 'lucide-react'
+import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
-import { inViewScale, inViewProps } from '../../lib/motion'
+import { inViewProps } from '../../lib/motion'
 import content from '../../data/content.json'
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
 export default function Testimonials() {
+  const [activeIndex, setActiveIndex] = useState(0)
+  const scrollRef = useRef<HTMLDivElement>(null)
+
+  const scrollToIndex = useCallback((index: number) => {
+    const container = scrollRef.current
+    if (!container) return
+    const card = container.children[index] as HTMLElement
+    if (!card) return
+    const offset = card.offsetLeft - (container.clientWidth - card.clientWidth) / 2
+    container.scrollTo({ left: offset, behavior: 'smooth' })
+    setActiveIndex(index)
+  }, [])
+
+  const go = (dir: 'prev' | 'next') => {
+    const items = content.testimonials.items
+    const next = dir === 'next'
+      ? Math.min(activeIndex + 1, items.length - 1)
+      : Math.max(activeIndex - 1, 0)
+    scrollToIndex(next)
+  }
+
+  const handleScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    const n = content.testimonials.items.length
+    const cardW = (el.scrollWidth + 20) / n
+    const idx = Math.round(el.scrollLeft / cardW)
+    setActiveIndex(Math.max(0, Math.min(idx, n - 1)))
+  }, [])
+
+  const items = content.testimonials.items
+
   return (
-    <section id="testimonials" className="py-24 lg:py-32 bg-white">
+    <section id="testimonials" className="py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <SectionHeader
           badge={content.testimonials.badge}
           heading={content.testimonials.heading}
           subheading={content.testimonials.subheading}
         />
+      </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {content.testimonials.items.map((t, i) => (
+      {/* ── Carousel ── */}
+      <motion.div {...inViewProps(0.05)} className="relative">
+        {/* Prev */}
+        <motion.button
+          onClick={() => go('prev')}
+          disabled={activeIndex === 0}
+          className="absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+        >
+          <ChevronLeft size={18} />
+        </motion.button>
+
+        {/* Next */}
+        <motion.button
+          onClick={() => go('next')}
+          disabled={activeIndex === items.length - 1}
+          className="absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-600 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.92 }}
+        >
+          <ChevronRight size={18} />
+        </motion.button>
+
+        {/* Track */}
+        <div
+          ref={scrollRef}
+          onScroll={handleScroll}
+          className="flex overflow-x-auto snap-x snap-mandatory gap-5 px-[max(24px,calc((100vw-1280px)/2+24px))] pb-4"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {items.map((t, i) => (
             <motion.div
               key={t.id}
-              {...inViewScale(i * 0.07)}
-              whileHover={{ y: -6, boxShadow: '0 16px 48px rgba(0,102,255,0.1)' }}
-              transition={{ duration: 0.25 }}
-              className="card-base p-7 flex flex-col relative group"
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.06, ease: EASE }}
+              whileHover={{ y: -5, boxShadow: '0 16px 48px rgba(0,102,255,0.1)' }}
+              className="flex-none w-[300px] sm:w-[360px] lg:w-[400px] snap-start card-base p-7 flex flex-col relative group"
             >
-              <div className="absolute top-6 right-6 opacity-8 group-hover:opacity-15 transition-opacity">
+              {/* Quote icon */}
+              <div className="absolute top-6 right-6 opacity-6 group-hover:opacity-12 transition-opacity">
                 <Quote size={36} className="text-blue-600" />
               </div>
 
+              {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(t.rating)].map((_, si) => (
                   <svg key={si} className="w-4 h-4 star-filled" viewBox="0 0 20 20">
@@ -35,10 +105,12 @@ export default function Testimonials() {
                 ))}
               </div>
 
+              {/* Text */}
               <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-6 italic">
                 "{t.text}"
               </p>
 
+              {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
@@ -54,11 +126,29 @@ export default function Testimonials() {
             </motion.div>
           ))}
         </div>
+      </motion.div>
 
-        <motion.div {...inViewProps(0.1)} className="mt-16 text-center">
+      {/* Pagination dots */}
+      <div className="flex justify-center gap-2 mt-6">
+        {items.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => scrollToIndex(i)}
+            className={`transition-all duration-300 rounded-full ${
+              i === activeIndex
+                ? 'w-6 h-2 bg-blue-600'
+                : 'w-2 h-2 bg-slate-300 hover:bg-slate-400'
+            }`}
+          />
+        ))}
+      </div>
+
+      {/* Rating strip */}
+      <div className="max-w-7xl mx-auto px-6">
+        <motion.div {...inViewProps(0.1)} className="mt-12 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm">
             <div className="flex -space-x-2">
-              {content.testimonials.items.slice(0, 4).map((t) => (
+              {items.slice(0, 4).map((t) => (
                 <div
                   key={t.id}
                   className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-xs font-bold text-white"

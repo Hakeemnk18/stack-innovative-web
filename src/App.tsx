@@ -13,9 +13,9 @@ import Contact from './components/sections/Contact'
 
 export default function App() {
   return (
-    <div className="min-h-screen">
+    <div className="w-full min-h-screen overflow-x-hidden">
       <Navbar />
-      <main>
+      <main className="w-full">
         <Hero />
         <Services />
         <Works />
