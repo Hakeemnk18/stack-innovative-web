@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Clock, Globe, Send, CheckCircle2 } from 'lucide-react'
+import { Mail, Clock, Globe, Send, CheckCircle2, AlertCircle } from 'lucide-react'
 import { inViewProps, inViewLeft, inViewRight } from '../../lib/motion'
 import content from '../../data/content.json'
 
@@ -20,15 +20,47 @@ export default function Contact() {
   const [form, setForm] = useState<FormData>({ name: '', email: '', service: '', budget: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }))
+    if (error) setError('')
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setSending(true)
-    setTimeout(() => { setSending(false); setSubmitted(true) }, 1800)
+    setError('')
+
+    try {
+      const data = new FormData()
+      data.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY ?? '')
+      data.append('name', form.name)
+      data.append('email', form.email)
+      data.append('message', form.message)
+      data.append('subject', `New Project Inquiry from ${form.name}`)
+      if (form.service) data.append('service', form.service)
+      if (form.budget)  data.append('budget', form.budget)
+      // Honeypot anti-spam
+      data.append('botcheck', '')
+
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data,
+      })
+      const json = await res.json()
+
+      if (json.success) {
+        setSubmitted(true)
+        setForm({ name: '', email: '', service: '', budget: '', message: '' })
+      } else {
+        setError(json.message ?? 'Something went wrong. Please try again.')
+      }
+    } catch {
+      setError('Network error — please check your connection and try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const { contact } = content
@@ -201,6 +233,13 @@ export default function Contact() {
                       </>
                     )}
                   </motion.button>
+
+                  {error && (
+                    <div className="flex items-start gap-2.5 px-4 py-3 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
+                      <AlertCircle size={16} className="flex-shrink-0 mt-0.5" />
+                      <span>{error}</span>
+                    </div>
+                  )}
 
                   <p className="text-center text-slate-400 text-xs pt-1">
                     We respond within 24 hours. No spam, ever.
