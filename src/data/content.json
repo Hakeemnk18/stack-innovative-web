@@ -3,9 +3,10 @@
     "name": "Stack Innovative",
     "tagline": "Web & App Dev",
     "logoText": "SI",
+    "logo": "https://res.cloudinary.com/ddblal31l/image/upload/v1779105042/1000077365_aabec844772ea757ac280e3222677a3a-19_11_2025_16_10_11_lf82m9.png",
     "email": "hello@stackinnovative.com",
-    "phone": "+1 (555) 000-0000",
-    "location": "Remote — Worldwide"
+    "phone": "7994285615",
+    "location": "Calicut - Kerala, India"
   },
   "nav": {
     "links": [
@@ -25,7 +26,7 @@
     "subtitle": "Full-stack web & app development that drives real business results. From concept to deployment — we make it happen.",
     "cta1": { "label": "View Our Work", "href": "#works" },
     "cta2": { "label": "Get a Quote", "href": "#contact" },
-    "socialProof": "Trusted by 30+ clients worldwide"
+    "socialProof": "Based in Calicut, Kerala · Available Worldwide"
   },
   "services": {
     "badge": "What We Do",
@@ -157,10 +158,10 @@
     ]
   },
   "stats": [
-    { "value": "50+", "label": "Projects Delivered", "sublabel": "Across all industries" },
-    { "value": "30+", "label": "Happy Clients", "sublabel": "And counting" },
-    { "value": "3+", "label": "Years Experience", "sublabel": "In the industry" },
-    { "value": "99%", "label": "Client Satisfaction", "sublabel": "Rated by clients" }
+    { "value": "100%", "label": "Satisfaction", "sublabel": "We don't stop until you love it" },
+    { "value": "< 24h", "label": "Response Time", "sublabel": "Always quick to reply" },
+    { "value": "Free", "label": "Consultation", "sublabel": "Start with no commitment" },
+    { "value": "∞", "label": "Revisions", "sublabel": "Until every detail is perfect" }
   ],
   "techStack": {
     "badge": "Our Stack",

@@ -49,7 +49,7 @@ export default function About() {
                     </div>
                   </div>
                   <div className="grid grid-cols-3 gap-3">
-                    {[{ v: '50+', l: 'Projects' }, { v: '30+', l: 'Clients' }, { v: '3+', l: 'Years' }].map((s) => (
+                    {[{ v: '100%', l: 'Satisfaction' }, { v: '<24h', l: 'Response' }, { v: '∞', l: 'Revisions' }].map((s) => (
                       <div key={s.l} className="text-center">
                         <div className="text-white font-black text-xl">{s.v}</div>
                         <div className="text-white/50 text-xs">{s.l}</div>

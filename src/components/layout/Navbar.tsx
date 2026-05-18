@@ -56,19 +56,17 @@ export default function Navbar() {
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
               >
-                <div className="relative w-9 h-9">
+                <div className="relative w-9 h-9 flex-shrink-0">
                   <motion.div
                     className="absolute inset-0 rounded-xl"
                     animate={{ boxShadow: ['0 0 0px rgba(0,102,255,0)', '0 0 18px rgba(0,102,255,0.5)', '0 0 0px rgba(0,102,255,0)'] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                   />
-                  <div className="relative w-full h-full rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
-                    <svg viewBox="0 0 28 28" width="18" height="18" fill="none">
-                      <rect x="4" y="16" width="20" height="4" rx="2" fill="white" opacity="0.55"/>
-                      <rect x="6" y="10" width="16" height="4" rx="2" fill="white" opacity="0.8"/>
-                      <rect x="8" y="4" width="12" height="4" rx="2" fill="white"/>
-                    </svg>
-                  </div>
+                  <img
+                    src={content.brand.logo}
+                    alt={content.brand.name}
+                    className="relative w-full h-full rounded-xl object-contain"
+                  />
                 </div>
                 <div className="hidden sm:block">
                   <div className="text-white font-bold text-sm leading-tight tracking-wide">{content.brand.name}</div>

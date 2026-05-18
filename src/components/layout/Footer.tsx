@@ -1,11 +1,45 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Instagram, Twitter, Linkedin, Github, Youtube, ArrowRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { inViewProps } from '../../lib/motion'
 import content from '../../data/content.json'
 
-const socialIconMap: Record<string, React.ElementType> = {
-  Instagram, Twitter, Linkedin, Github, Youtube,
+/* ── Inline SVG social icons (avoids deprecated lucide brand icons) ── */
+const SvgInstagram = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+    <circle cx="12" cy="12" r="4"/>
+    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+  </svg>
+)
+const SvgTwitterX = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+  </svg>
+)
+const SvgLinkedin = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/>
+    <circle cx="4" cy="4" r="2"/>
+  </svg>
+)
+const SvgGithub = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+  </svg>
+)
+const SvgYoutube = () => (
+  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+)
+
+const socialIconMap: Record<string, () => JSX.Element> = {
+  Instagram: SvgInstagram,
+  Twitter:   SvgTwitterX,
+  Linkedin:  SvgLinkedin,
+  Github:    SvgGithub,
+  Youtube:   SvgYoutube,
 }
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -34,12 +68,12 @@ export default function Footer() {
               className="inline-flex items-center gap-2.5 group"
               whileHover={{ scale: 1.02 }}
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center shadow-lg shadow-blue-500/25">
-                <svg viewBox="0 0 28 28" width="20" height="20" fill="none">
-                  <rect x="4" y="16" width="20" height="4" rx="2" fill="white" opacity="0.6"/>
-                  <rect x="6" y="10" width="16" height="4" rx="2" fill="white" opacity="0.8"/>
-                  <rect x="8" y="4" width="12" height="4" rx="2" fill="white"/>
-                </svg>
+              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+                <img
+                  src={content.brand.logo}
+                  alt={content.brand.name}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <div className="font-bold text-white text-sm leading-tight">{content.brand.name}</div>
@@ -128,7 +162,7 @@ export default function Footer() {
 
           <motion.div {...inViewProps(0.05)} className="flex items-center gap-2">
             {footer.social.map((s) => {
-              const Icon = socialIconMap[s.icon] ?? Github
+              const Icon = socialIconMap[s.icon] ?? SvgGithub
               return (
                 <motion.a
                   key={s.platform}
@@ -140,7 +174,7 @@ export default function Footer() {
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.92 }}
                 >
-                  <Icon size={15} />
+                  <Icon />
                 </motion.a>
               )
             })}
