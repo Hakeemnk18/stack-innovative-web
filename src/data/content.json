@@ -10,13 +10,31 @@
   },
   "nav": {
     "links": [
-      { "label": "Services", "href": "#services" },
-      { "label": "Works", "href": "#works" },
-      { "label": "Tech", "href": "#tech" },
-      { "label": "About", "href": "#about" },
-      { "label": "Contact", "href": "#contact" }
+      {
+        "label": "Services",
+        "href": "#services"
+      },
+      {
+        "label": "Works",
+        "href": "#works"
+      },
+      {
+        "label": "Tech",
+        "href": "#tech"
+      },
+      {
+        "label": "About",
+        "href": "#about"
+      },
+      {
+        "label": "Contact",
+        "href": "#contact"
+      }
     ],
-    "cta": { "label": "Get a Quote", "href": "#contact" }
+    "cta": {
+      "label": "Get a Quote",
+      "href": "#contact"
+    }
   },
   "hero": {
     "availableBadge": "Available for New Projects",
@@ -24,8 +42,14 @@
     "headlineAccent": "Experiences",
     "headline2": "That Convert",
     "subtitle": "Full-stack web & app development that drives real business results. From concept to deployment — we make it happen.",
-    "cta1": { "label": "View Our Work", "href": "#works" },
-    "cta2": { "label": "Get a Quote", "href": "#contact" },
+    "cta1": {
+      "label": "View Our Work",
+      "href": "#works"
+    },
+    "cta2": {
+      "label": "Get a Quote",
+      "href": "#contact"
+    },
     "socialProof": "Based in Calicut, Kerala · Available Worldwide"
   },
   "services": {
@@ -39,7 +63,11 @@
         "description": "Custom websites and web applications built with modern frameworks — fast, scalable, and SEO-optimized from day one.",
         "icon": "Globe",
         "color": "#0066FF",
-        "tags": ["React", "Next.js", "Node.js"],
+        "tags": [
+          "React",
+          "Next.js",
+          "Node.js"
+        ],
         "href": "#contact"
       },
       {
@@ -48,7 +76,11 @@
         "description": "Native and cross-platform mobile apps for iOS and Android that deliver seamless, delightful user experiences.",
         "icon": "Smartphone",
         "color": "#7C3AED",
-        "tags": ["React Native", "Flutter", "Swift"],
+        "tags": [
+          "React Native",
+          "Flutter",
+          "Swift"
+        ],
         "href": "#contact"
       },
       {
@@ -57,7 +89,11 @@
         "description": "User-centered design that converts visitors into customers. From wireframes to pixel-perfect production interfaces.",
         "icon": "Palette",
         "color": "#00D4FF",
-        "tags": ["Figma", "Prototyping", "Design Systems"],
+        "tags": [
+          "Figma",
+          "Prototyping",
+          "Design Systems"
+        ],
         "href": "#contact"
       },
       {
@@ -66,7 +102,11 @@
         "description": "Online stores that sell. Shopify, custom platforms, payment integration, and conversion-rate optimization built in.",
         "icon": "ShoppingCart",
         "color": "#10B981",
-        "tags": ["Shopify", "WooCommerce", "Stripe"],
+        "tags": [
+          "Shopify",
+          "WooCommerce",
+          "Stripe"
+        ],
         "href": "#contact"
       },
       {
@@ -75,7 +115,11 @@
         "description": "Get found on Google. Technical SEO, Core Web Vitals optimization, and content strategy that ranks and retains.",
         "icon": "TrendingUp",
         "color": "#F59E0B",
-        "tags": ["Core Web Vitals", "Schema", "Analytics"],
+        "tags": [
+          "Core Web Vitals",
+          "Schema",
+          "Analytics"
+        ],
         "href": "#contact"
       },
       {
@@ -84,7 +128,11 @@
         "description": "Ongoing support, security updates, and performance monitoring to keep your digital presence running flawlessly.",
         "icon": "Shield",
         "color": "#EF4444",
-        "tags": ["24/7 Support", "Security", "Updates"],
+        "tags": [
+          "24/7 Support",
+          "Security",
+          "Updates"
+        ],
         "href": "#contact"
       }
     ]
@@ -93,46 +141,69 @@
     "badge": "Portfolio",
     "heading": "Our Recent Work",
     "subheading": "A selection of projects that showcase our capabilities and craft",
-    "filters": ["All", "Web App", "Mobile App", "E-Commerce", "Design"],
+    "filters": [
+      "All",
+      "Web App",
+      "Mobile App",
+      "E-Commerce",
+      "Design"
+    ],
     "items": [
       {
         "id": "project-1",
-        "title": "FinTech Dashboard",
-        "category": "Web App",
-        "description": "Real-time financial analytics dashboard with custom data visualizations and role-based access control.",
+        "title": "Art Space",
+        "category": "E-Commerce",
+        "description": "Modern art product showcase website with responsive landing and product pages integrated with WhatsApp ordering.",
         "image": "https://placehold.co/700x480/0F172A/0066FF?text=FinTech+Dashboard",
         "gradient": "from-blue-600 to-blue-900",
-        "tags": ["React", "Node.js", "PostgreSQL"],
-        "href": "#"
+        "tags": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "href": "https://www.artspaces.in/"
       },
       {
         "id": "project-2",
-        "title": "StyleHive Store",
+        "title": "Nivah Fashion Hub",
         "category": "E-Commerce",
-        "description": "High-converting Shopify store with custom theme development, 40% higher conversion rate post-launch.",
-        "image": "https://placehold.co/700x480/0F172A/7C3AED?text=StyleHive+Store",
-        "gradient": "from-purple-600 to-purple-900",
-        "tags": ["Shopify", "Liquid", "Stripe"],
-        "href": "#"
+        "description": "Full-stack fashion e-commerce platform with secure authentication, product management, and integrated online payment gateway.",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1779266835/Screenshot_2026-05-20_141423_byrqet.png",
+        "gradient": "from-purple-600 to-pink-700",
+        "tags": [
+          "React",
+          "TypeScript",
+          "Node.js",
+          "MongoDB"
+        ],
+        "href": "https://www.nivahfashions.com/"
       },
       {
         "id": "project-3",
-        "title": "FitPulse App",
-        "category": "Mobile App",
-        "description": "Cross-platform fitness tracking app — 4.8 stars on the App Store with workout builder and social features.",
-        "image": "https://placehold.co/700x480/0F172A/00D4FF?text=FitPulse+App",
-        "gradient": "from-cyan-600 to-cyan-900",
-        "tags": ["React Native", "Firebase", "Redux"],
-        "href": "#"
+        "title": "Yatra Soul",
+        "category": "Portfolio Website",
+        "description": "Modern travel agency portfolio website with responsive design, destination showcase, and smooth user experience.",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1779267223/Screenshot_2026-05-20_142207_xv5hai.png",
+        "gradient": "from-cyan-600 to-blue-800",
+        "tags": [
+          "React",
+          "Tailwind CSS",
+          "cloudinary"
+        ],
+        "href": "https://www.yatrasoul.com/"
       },
       {
         "id": "project-4",
-        "title": "NovaSaaS Landing",
-        "category": "Design",
-        "description": "High-performance SaaS marketing website with animated sections and optimized conversion flows.",
-        "image": "https://placehold.co/700x480/0F172A/10B981?text=NovaSaaS",
+        "title": "Mentor Live",
+        "category":"Web App",
+        "description": "Faculty booking and session management platform with responsive interface and streamlined appointment scheduling.",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1779288444/Screenshot_2026-05-20_201631_t4c9vs.png",
         "gradient": "from-emerald-600 to-emerald-900",
-        "tags": ["Next.js", "Framer Motion", "Tailwind"],
+        "tags": [
+          "Next.js",
+          "Framer Motion",
+          "Tailwind"
+        ],
         "href": "#"
       },
       {
@@ -142,7 +213,11 @@
         "description": "Restaurant reservation management system with real-time table availability and automated confirmations.",
         "image": "https://placehold.co/700x480/0F172A/F59E0B?text=TableFlex",
         "gradient": "from-amber-600 to-amber-900",
-        "tags": ["React", "Express", "MongoDB"],
+        "tags": [
+          "React",
+          "Express",
+          "MongoDB"
+        ],
         "href": "#"
       },
       {
@@ -152,16 +227,36 @@
         "description": "Professional corporate website with headless CMS integration, multi-language support, and SEO optimization.",
         "image": "https://placehold.co/700x480/0F172A/EF4444?text=Nexora+Corp",
         "gradient": "from-red-600 to-red-900",
-        "tags": ["Next.js", "Contentful", "SEO"],
+        "tags": [
+          "Next.js",
+          "Contentful",
+          "SEO"
+        ],
         "href": "#"
       }
     ]
   },
   "stats": [
-    { "value": "100%", "label": "Satisfaction", "sublabel": "We don't stop until you love it" },
-    { "value": "< 24h", "label": "Response Time", "sublabel": "Always quick to reply" },
-    { "value": "Free", "label": "Consultation", "sublabel": "Start with no commitment" },
-    { "value": "∞", "label": "Revisions", "sublabel": "Until every detail is perfect" }
+    {
+      "value": "100%",
+      "label": "Satisfaction",
+      "sublabel": "We don't stop until you love it"
+    },
+    {
+      "value": "< 24h",
+      "label": "Response Time",
+      "sublabel": "Always quick to reply"
+    },
+    {
+      "value": "Free",
+      "label": "Consultation",
+      "sublabel": "Start with no commitment"
+    },
+    {
+      "value": "∞",
+      "label": "Revisions",
+      "sublabel": "Until every detail is perfect"
+    }
   ],
   "techStack": {
     "badge": "Our Stack",
@@ -173,28 +268,56 @@
         "category": "Frontend",
         "icon": "Monitor",
         "color": "#0066FF",
-        "techs": ["React", "Next.js", "TypeScript", "Tailwind CSS", "Vue.js", "Framer Motion"]
+        "techs": [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Tailwind CSS",
+          "Vue.js",
+          "Framer Motion"
+        ]
       },
       {
         "id": "backend",
         "category": "Backend",
         "icon": "Server",
         "color": "#7C3AED",
-        "techs": ["Node.js", "Express", "Python", "Django", "GraphQL", "REST APIs"]
+        "techs": [
+          "Node.js",
+          "Express",
+          "Python",
+          "Django",
+          "GraphQL",
+          "REST APIs"
+        ]
       },
       {
         "id": "mobile",
         "category": "Mobile",
         "icon": "Smartphone",
         "color": "#00D4FF",
-        "techs": ["React Native", "Flutter", "Swift", "Kotlin", "Expo", "Firebase"]
+        "techs": [
+          "React Native",
+          "Flutter",
+          "Swift",
+          "Kotlin",
+          "Expo",
+          "Firebase"
+        ]
       },
       {
         "id": "cloud",
         "category": "Cloud & Tools",
         "icon": "Cloud",
         "color": "#10B981",
-        "techs": ["AWS", "Vercel", "Docker", "PostgreSQL", "MongoDB", "Supabase"]
+        "techs": [
+          "AWS",
+          "Vercel",
+          "Docker",
+          "PostgreSQL",
+          "MongoDB",
+          "Supabase"
+        ]
       }
     ]
   },
@@ -206,10 +329,26 @@
     "description2": "From startups launching their MVP to established businesses scaling their platforms, we partner with clients who are serious about their digital presence and growth.",
     "image": "https://placehold.co/600x700/040714/0066FF?text=Stack+Innovative+Team",
     "highlights": [
-      { "icon": "Zap", "title": "Fast Delivery", "desc": "Agile sprints with clear milestones and transparent timelines." },
-      { "icon": "Lock", "title": "Secure by Design", "desc": "Security-first development practices on every project." },
-      { "icon": "RefreshCw", "title": "Iterative Process", "desc": "We refine and iterate until every detail is perfect." },
-      { "icon": "HeartHandshake", "title": "True Partnership", "desc": "Your success is our success — we're invested in your growth." }
+      {
+        "icon": "Zap",
+        "title": "Fast Delivery",
+        "desc": "Agile sprints with clear milestones and transparent timelines."
+      },
+      {
+        "icon": "Lock",
+        "title": "Secure by Design",
+        "desc": "Security-first development practices on every project."
+      },
+      {
+        "icon": "RefreshCw",
+        "title": "Iterative Process",
+        "desc": "We refine and iterate until every detail is perfect."
+      },
+      {
+        "icon": "HeartHandshake",
+        "title": "True Partnership",
+        "desc": "Your success is our success — we're invested in your growth."
+      }
     ]
   },
   "testimonials": {
@@ -277,8 +416,14 @@
     "badge": "Let's Work Together",
     "heading": "Ready to Build Something Great?",
     "subheading": "Tell us about your project and let's bring your vision to life.",
-    "cta1": { "label": "Start a Project", "href": "#contact" },
-    "cta2": { "label": "View Our Work", "href": "#works" }
+    "cta1": {
+      "label": "Start a Project",
+      "href": "#contact"
+    },
+    "cta2": {
+      "label": "View Our Work",
+      "href": "#works"
+    }
   },
   "contact": {
     "badge": "Get in Touch",
@@ -299,18 +444,61 @@
       "submit": "Send Message",
       "sending": "Sending..."
     },
-    "services": ["Web Development", "App Development", "UI/UX Design", "E-Commerce", "SEO & Performance", "Support & Maintenance", "Other"],
-    "budgets": ["< $1,000", "$1,000 – $5,000", "$5,000 – $15,000", "$15,000 – $50,000", "$50,000+", "Let's Discuss"],
+    "services": [
+      "Web Development",
+      "App Development",
+      "UI/UX Design",
+      "E-Commerce",
+      "SEO & Performance",
+      "Support & Maintenance",
+      "Other"
+    ],
+    "budgets": [
+      "< $1,000",
+      "$1,000 – $5,000",
+      "$5,000 – $15,000",
+      "$15,000 – $50,000",
+      "$50,000+",
+      "Let's Discuss"
+    ],
     "infoCards": [
-      { "icon": "Mail", "title": "Email Us", "value": "hello@stackinnovative.com" },
-      { "icon": "Clock", "title": "Response Time", "value": "Within 24 hours" },
-      { "icon": "Globe", "title": "We Work", "value": "Remotely — Worldwide" }
+      {
+        "icon": "Mail",
+        "title": "Email Us",
+        "value": "hello@stackinnovative.com"
+      },
+      {
+        "icon": "Clock",
+        "title": "Response Time",
+        "value": "Within 24 hours"
+      },
+      {
+        "icon": "Globe",
+        "title": "We Work",
+        "value": "Remotely — Worldwide"
+      }
     ],
     "socialLinks": [
-      { "id": "instagram", "label": "Instagram", "href": "https://instagram.com/stackinnovative" },
-      { "id": "threads",   "label": "Threads",   "href": "https://www.threads.net/@stackinnovative" },
-      { "id": "linkedin",  "label": "LinkedIn",  "href": "https://linkedin.com/company/stackinnovative" },
-      { "id": "facebook",  "label": "Facebook",  "href": "https://facebook.com/stackinnovative" }
+      {
+        "id": "instagram",
+        "label": "Instagram",
+        "href": "https://instagram.com/stackinnovative"
+      },
+      {
+        "id": "threads",
+        "label": "Threads",
+        "href": "https://www.threads.net/@stackinnovative"
+      },
+      {
+        "id": "linkedin",
+        "label": "LinkedIn",
+        "href": "https://linkedin.com/company/stackinnovative"
+      },
+      {
+        "id": "facebook",
+        "label": "Facebook",
+        "href": "https://facebook.com/stackinnovative"
+      }
     ]
   },
   "footer": {
@@ -324,48 +512,122 @@
       {
         "heading": "Services",
         "links": [
-          { "label": "Web Development", "href": "#services" },
-          { "label": "App Development", "href": "#services" },
-          { "label": "UI/UX Design", "href": "#services" },
-          { "label": "E-Commerce", "href": "#services" },
-          { "label": "SEO & Performance", "href": "#services" }
+          {
+            "label": "Web Development",
+            "href": "#services"
+          },
+          {
+            "label": "App Development",
+            "href": "#services"
+          },
+          {
+            "label": "UI/UX Design",
+            "href": "#services"
+          },
+          {
+            "label": "E-Commerce",
+            "href": "#services"
+          },
+          {
+            "label": "SEO & Performance",
+            "href": "#services"
+          }
         ]
       },
       {
         "heading": "Company",
         "links": [
-          { "label": "About Us", "href": "#about" },
-          { "label": "Our Work", "href": "#works" },
-          { "label": "Testimonials", "href": "#testimonials" },
-          { "label": "Blog", "href": "#" },
-          { "label": "Careers", "href": "#" }
+          {
+            "label": "About Us",
+            "href": "#about"
+          },
+          {
+            "label": "Our Work",
+            "href": "#works"
+          },
+          {
+            "label": "Testimonials",
+            "href": "#testimonials"
+          },
+          {
+            "label": "Blog",
+            "href": "#"
+          },
+          {
+            "label": "Careers",
+            "href": "#"
+          }
         ]
       },
       {
         "heading": "Policies",
         "links": [
-          { "label": "Privacy Policy", "href": "#" },
-          { "label": "Terms of Service", "href": "#" },
-          { "label": "Cookie Policy", "href": "#" },
-          { "label": "Refund Policy", "href": "#" }
+          {
+            "label": "Privacy Policy",
+            "href": "#"
+          },
+          {
+            "label": "Terms of Service",
+            "href": "#"
+          },
+          {
+            "label": "Cookie Policy",
+            "href": "#"
+          },
+          {
+            "label": "Refund Policy",
+            "href": "#"
+          }
         ]
       },
       {
         "heading": "Help",
         "links": [
-          { "label": "Contact Us", "href": "#contact" },
-          { "label": "FAQ", "href": "#" },
-          { "label": "Support", "href": "#" },
-          { "label": "Project Inquiry", "href": "#contact" }
+          {
+            "label": "Contact Us",
+            "href": "#contact"
+          },
+          {
+            "label": "FAQ",
+            "href": "#"
+          },
+          {
+            "label": "Support",
+            "href": "#"
+          },
+          {
+            "label": "Project Inquiry",
+            "href": "#contact"
+          }
         ]
       }
     ],
     "social": [
-      { "platform": "Instagram", "href": "#", "icon": "Instagram" },
-      { "platform": "Twitter / X", "href": "#", "icon": "Twitter" },
-      { "platform": "LinkedIn", "href": "#", "icon": "Linkedin" },
-      { "platform": "GitHub", "href": "#", "icon": "Github" },
-      { "platform": "YouTube", "href": "#", "icon": "Youtube" }
+      {
+        "platform": "Instagram",
+        "href": "#",
+        "icon": "Instagram"
+      },
+      {
+        "platform": "Twitter / X",
+        "href": "#",
+        "icon": "Twitter"
+      },
+      {
+        "platform": "LinkedIn",
+        "href": "#",
+        "icon": "Linkedin"
+      },
+      {
+        "platform": "GitHub",
+        "href": "#",
+        "icon": "Github"
+      },
+      {
+        "platform": "YouTube",
+        "href": "#",
+        "icon": "Youtube"
+      }
     ],
     "copyright": "Stack Innovative. Trademark Protected. All Rights Reserved."
   }
