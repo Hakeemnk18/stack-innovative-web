@@ -60,9 +60,9 @@ export interface FooterColumn {
 }
 
 export interface SocialLink {
-  platform: string
+  id: string
+  label: string
   href: string
-  icon: string
 }
 
 export interface ContactInfoCard {

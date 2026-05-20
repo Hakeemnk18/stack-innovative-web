@@ -305,6 +305,12 @@
       { "icon": "Mail", "title": "Email Us", "value": "hello@stackinnovative.com" },
       { "icon": "Clock", "title": "Response Time", "value": "Within 24 hours" },
       { "icon": "Globe", "title": "We Work", "value": "Remotely — Worldwide" }
+    ],
+    "socialLinks": [
+      { "id": "instagram", "label": "Instagram", "href": "https://instagram.com/stackinnovative" },
+      { "id": "threads",   "label": "Threads",   "href": "https://www.threads.net/@stackinnovative" },
+      { "id": "linkedin",  "label": "LinkedIn",  "href": "https://linkedin.com/company/stackinnovative" },
+      { "id": "facebook",  "label": "Facebook",  "href": "https://facebook.com/stackinnovative" }
     ]
   },
   "footer": {
