@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Quote, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import { inViewProps } from '../../lib/motion'
+import { useAutoScroll } from '../../hooks/useAutoScroll'
 import content from '../../data/content.json'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -12,49 +13,37 @@ export default function Testimonials() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const items = content.testimonials.items
 
-  /* ── Reliable active-index from DOM positions ── */
   const syncIndex = useCallback(() => {
     const el = scrollRef.current
     if (!el || el.children.length === 0) return
-
     const cards = Array.from(el.children) as HTMLElement[]
-
-    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) {
-      setActiveIndex(cards.length - 1)
-      return
-    }
-    if (el.scrollLeft <= 4) {
-      setActiveIndex(0)
-      return
-    }
-
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) { setActiveIndex(cards.length - 1); return }
+    if (el.scrollLeft <= 4) { setActiveIndex(0); return }
     const vpCenter = el.scrollLeft + el.clientWidth / 2
-    let best = 0
-    let bestDist = Infinity
+    let best = 0, bestDist = Infinity
     cards.forEach((card, i) => {
-      const dist = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
-      if (dist < bestDist) { bestDist = dist; best = i }
+      const d = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
+      if (d < bestDist) { bestDist = d; best = i }
     })
     setActiveIndex(best)
   }, [])
 
-  /* ── Scroll to a specific card, centered ── */
   const scrollToIndex = useCallback((index: number) => {
     const el = scrollRef.current
     if (!el) return
     const cards = Array.from(el.children) as HTMLElement[]
     const card = cards[index]
     if (!card) return
-    const target = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2
-    el.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
+    el.scrollTo({ left: Math.max(0, card.offsetLeft - (el.clientWidth - card.clientWidth) / 2), behavior: 'smooth' })
     setActiveIndex(index)
   }, [])
 
+  const { pause, resume } = useAutoScroll({ scrollRef, length: items.length, activeIndex, scrollToIndex, interval: 4000 })
+
   const go = (dir: 'prev' | 'next') => {
-    const next = dir === 'next'
-      ? Math.min(activeIndex + 1, items.length - 1)
-      : Math.max(activeIndex - 1, 0)
-    scrollToIndex(next)
+    pause()
+    resume(4000)
+    scrollToIndex(dir === 'next' ? Math.min(activeIndex + 1, items.length - 1) : Math.max(activeIndex - 1, 0))
   }
 
   return (
@@ -68,8 +57,12 @@ export default function Testimonials() {
       </div>
 
       {/* ── Carousel ── */}
-      <motion.div {...inViewProps(0.05)} className="relative">
-        {/* Prev */}
+      <motion.div
+        {...inViewProps(0.05)}
+        className="relative"
+        onMouseEnter={pause}
+        onMouseLeave={() => resume(1200)}
+      >
         <button
           onClick={() => go('prev')}
           disabled={activeIndex === 0}
@@ -78,7 +71,6 @@ export default function Testimonials() {
           <ChevronLeft size={18} />
         </button>
 
-        {/* Next */}
         <button
           onClick={() => go('next')}
           disabled={activeIndex === items.length - 1}
@@ -87,10 +79,11 @@ export default function Testimonials() {
           <ChevronRight size={18} />
         </button>
 
-        {/* Track */}
         <div
           ref={scrollRef}
           onScroll={syncIndex}
+          onPointerDown={() => { pause(); resume(4500) }}
+          onWheel={(e) => { if (Math.abs(e.deltaX) > 5) { pause(); resume(3000) } }}
           className="flex overflow-x-auto gap-5 pb-4"
           style={{
             scrollSnapType: 'x mandatory',
@@ -110,18 +103,12 @@ export default function Testimonials() {
               transition={{ duration: 0.4, delay: i * 0.04, ease: EASE }}
               whileHover={{ y: -5, boxShadow: '0 16px 48px rgba(0,102,255,0.1)' }}
               className="card-base p-7 flex flex-col relative group"
-              style={{
-                flexShrink: 0,
-                width: 'clamp(280px, 38vw, 400px)',
-                scrollSnapAlign: 'center',
-              }}
+              style={{ flexShrink: 0, width: 'clamp(280px, 38vw, 400px)', scrollSnapAlign: 'center' }}
             >
-              {/* Quote icon */}
               <div className="absolute top-6 right-6 opacity-5 group-hover:opacity-15 transition-opacity">
                 <Quote size={36} className="text-blue-600" />
               </div>
 
-              {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(t.rating)].map((_, si) => (
                   <svg key={si} className="w-4 h-4 star-filled" viewBox="0 0 20 20">
@@ -130,12 +117,8 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              {/* Text */}
-              <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-6 italic">
-                "{t.text}"
-              </p>
+              <p className="text-slate-600 text-sm leading-relaxed flex-1 mb-6 italic">"{t.text}"</p>
 
-              {/* Author */}
               <div className="flex items-center gap-3 pt-4 border-t border-slate-100">
                 <div
                   className="w-11 h-11 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
@@ -153,23 +136,18 @@ export default function Testimonials() {
         </div>
       </motion.div>
 
-      {/* Pagination dots */}
+      {/* Dots */}
       <div className="flex justify-center items-center gap-2 mt-5">
         {items.map((_, i) => (
           <button
             key={i}
-            onClick={() => scrollToIndex(i)}
+            onClick={() => { pause(); resume(4000); scrollToIndex(i) }}
             aria-label={`Go to testimonial ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? 'w-6 h-2 bg-blue-600'
-                : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'
-            }`}
+            className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'w-6 h-2 bg-blue-600' : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'}`}
           />
         ))}
       </div>
 
-      {/* Rating strip */}
       <div className="max-w-7xl mx-auto px-6">
         <motion.div {...inViewProps(0.1)} className="mt-10 text-center">
           <div className="inline-flex items-center gap-3 px-6 py-4 bg-white border border-slate-200 rounded-2xl shadow-sm">

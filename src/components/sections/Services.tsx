@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { Globe, Smartphone, Palette, ShoppingCart, TrendingUp, Shield, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import { inViewProps } from '../../lib/motion'
+import { useAutoScroll } from '../../hooks/useAutoScroll'
 import content from '../../data/content.json'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -16,53 +17,38 @@ export default function Services() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const items = content.services.items
 
-  /* ── Reliable active-index from DOM positions ── */
+  // Sync active dot from scroll position — called only on real scroll events
   const syncIndex = useCallback(() => {
     const el = scrollRef.current
     if (!el || el.children.length === 0) return
-
     const cards = Array.from(el.children) as HTMLElement[]
-
-    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) {
-      setActiveIndex(cards.length - 1)
-      return
-    }
-    if (el.scrollLeft <= 4) {
-      setActiveIndex(0)
-      return
-    }
-
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) { setActiveIndex(cards.length - 1); return }
+    if (el.scrollLeft <= 4) { setActiveIndex(0); return }
     const vpCenter = el.scrollLeft + el.clientWidth / 2
-    let best = 0
-    let bestDist = Infinity
+    let best = 0, bestDist = Infinity
     cards.forEach((card, i) => {
-      const dist = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
-      if (dist < bestDist) { bestDist = dist; best = i }
+      const d = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
+      if (d < bestDist) { bestDist = d; best = i }
     })
     setActiveIndex(best)
   }, [])
 
-  /* ── Scroll to a specific card, centered ── */
   const scrollToIndex = useCallback((index: number) => {
     const el = scrollRef.current
     if (!el) return
     const cards = Array.from(el.children) as HTMLElement[]
     const card = cards[index]
     if (!card) return
-    const target = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2
-    el.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
+    el.scrollTo({ left: Math.max(0, card.offsetLeft - (el.clientWidth - card.clientWidth) / 2), behavior: 'smooth' })
     setActiveIndex(index)
   }, [])
 
-  const go = (dir: 'prev' | 'next') => {
-    const next = dir === 'next'
-      ? Math.min(activeIndex + 1, items.length - 1)
-      : Math.max(activeIndex - 1, 0)
-    scrollToIndex(next)
-  }
+  const { pause, resume } = useAutoScroll({ scrollRef, length: items.length, activeIndex, scrollToIndex })
 
-  const handleClick = (href: string) => {
-    document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+  const go = (dir: 'prev' | 'next') => {
+    pause()
+    resume(4000)
+    scrollToIndex(dir === 'next' ? Math.min(activeIndex + 1, items.length - 1) : Math.max(activeIndex - 1, 0))
   }
 
   return (
@@ -76,8 +62,12 @@ export default function Services() {
       </div>
 
       {/* ── Carousel ── */}
-      <motion.div {...inViewProps(0.05)} className="relative">
-        {/* Prev arrow */}
+      <motion.div
+        {...inViewProps(0.05)}
+        className="relative"
+        onMouseEnter={pause}
+        onMouseLeave={() => resume(1200)}
+      >
         <button
           onClick={() => go('prev')}
           disabled={activeIndex === 0}
@@ -86,7 +76,6 @@ export default function Services() {
           <ChevronLeft size={18} />
         </button>
 
-        {/* Next arrow */}
         <button
           onClick={() => go('next')}
           disabled={activeIndex === items.length - 1}
@@ -95,10 +84,15 @@ export default function Services() {
           <ChevronRight size={18} />
         </button>
 
-        {/* Scroll track */}
+        {/* Scroll track
+            - onScroll: only syncs dots (no pause — auto-scroll triggers scroll too)
+            - onPointerDown: detects real user drag (mouse or touch)
+            - onWheel: detects trackpad horizontal swipe */}
         <div
           ref={scrollRef}
           onScroll={syncIndex}
+          onPointerDown={() => { pause(); resume(4500) }}
+          onWheel={(e) => { if (Math.abs(e.deltaX) > 5) { pause(); resume(3000) } }}
           className="flex overflow-x-auto gap-5 pb-4"
           style={{
             scrollSnapType: 'x mandatory',
@@ -118,15 +112,10 @@ export default function Services() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.38, delay: i * 0.05, ease: EASE }}
                 whileHover={{ y: -6 }}
-                onClick={() => handleClick(service.href)}
+                onClick={() => document.querySelector(service.href)?.scrollIntoView({ behavior: 'smooth' })}
                 className="card-base p-7 flex flex-col group cursor-pointer"
-                style={{
-                  flexShrink: 0,
-                  width: 'clamp(280px, 38vw, 380px)',
-                  scrollSnapAlign: 'center',
-                }}
+                style={{ flexShrink: 0, width: 'clamp(280px, 38vw, 380px)', scrollSnapAlign: 'center' }}
               >
-                {/* Icon */}
                 <motion.div
                   className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5"
                   style={{ background: `${service.color}15` }}
@@ -136,30 +125,19 @@ export default function Services() {
                   <Icon size={22} style={{ color: service.color }} />
                 </motion.div>
 
-                {/* Title */}
                 <h3 className="display-font font-bold text-slate-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
                   {service.title}
                 </h3>
+                <p className="text-slate-500 text-sm leading-relaxed flex-1 mb-5">{service.description}</p>
 
-                {/* Description */}
-                <p className="text-slate-500 text-sm leading-relaxed flex-1 mb-5">
-                  {service.description}
-                </p>
-
-                {/* Tags */}
                 <div className="flex flex-wrap gap-1.5 mb-5">
-                  {service.tags.map((tag) => (
-                    <span key={tag} className="tech-badge">{tag}</span>
-                  ))}
+                  {service.tags.map((tag) => <span key={tag} className="tech-badge">{tag}</span>)}
                 </div>
 
-                {/* CTA link */}
                 <div className="flex items-center gap-1.5 text-sm font-semibold text-slate-400 group-hover:text-blue-600 transition-colors">
-                  Learn More
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                  Learn More <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </div>
 
-                {/* Bottom colour accent */}
                 <div
                   className="absolute bottom-0 left-0 right-0 h-0.5 rounded-b-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(90deg, ${service.color}, transparent)` }}
@@ -170,30 +148,23 @@ export default function Services() {
         </div>
       </motion.div>
 
-      {/* ── Pagination dots ── */}
+      {/* Dots */}
       <div className="flex justify-center items-center gap-2 mt-5">
         {items.map((_, i) => (
           <button
             key={i}
-            onClick={() => scrollToIndex(i)}
+            onClick={() => { pause(); resume(4000); scrollToIndex(i) }}
             aria-label={`Go to service ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? 'w-6 h-2 bg-blue-600'
-                : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'
-            }`}
+            className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'w-6 h-2 bg-blue-600' : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'}`}
           />
         ))}
       </div>
 
-      {/* Bottom CTA */}
       <div className="max-w-7xl mx-auto px-6">
         <motion.div {...inViewProps(0.1)} className="text-center mt-12">
-          <p className="text-slate-500 mb-5 text-base">
-            Not sure what you need? Let's talk about your project.
-          </p>
+          <p className="text-slate-500 mb-5 text-base">Not sure what you need? Let's talk about your project.</p>
           <motion.button
-            onClick={() => handleClick('#contact')}
+            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-primary"
             whileHover={{ scale: 1.04, boxShadow: '0 10px 28px rgba(0,102,255,0.38)' }}
             whileTap={{ scale: 0.97 }}

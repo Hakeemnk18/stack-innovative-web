@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
 import { inViewProps } from '../../lib/motion'
+import { useAutoScroll } from '../../hooks/useAutoScroll'
 import content from '../../data/content.json'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -16,56 +17,39 @@ export default function Works() {
     ? content.works.items
     : content.works.items.filter((w) => w.category === activeFilter)
 
-  /* ── Reliable active-index from DOM positions ── */
   const syncIndex = useCallback(() => {
     const el = scrollRef.current
     if (!el || el.children.length === 0) return
-
     const cards = Array.from(el.children) as HTMLElement[]
-
-    // At scroll end → always last card
-    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) {
-      setActiveIndex(cards.length - 1)
-      return
-    }
-    // At scroll start → always first card
-    if (el.scrollLeft <= 4) {
-      setActiveIndex(0)
-      return
-    }
-
-    // Find card whose center is closest to viewport center
+    if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 4) { setActiveIndex(cards.length - 1); return }
+    if (el.scrollLeft <= 4) { setActiveIndex(0); return }
     const vpCenter = el.scrollLeft + el.clientWidth / 2
-    let best = 0
-    let bestDist = Infinity
+    let best = 0, bestDist = Infinity
     cards.forEach((card, i) => {
-      const dist = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
-      if (dist < bestDist) { bestDist = dist; best = i }
+      const d = Math.abs((card.offsetLeft + card.clientWidth / 2) - vpCenter)
+      if (d < bestDist) { bestDist = d; best = i }
     })
     setActiveIndex(best)
   }, [])
 
-  /* ── Scroll to a specific card, centered ── */
   const scrollToIndex = useCallback((index: number) => {
     const el = scrollRef.current
     if (!el) return
     const cards = Array.from(el.children) as HTMLElement[]
     const card = cards[index]
     if (!card) return
-    const target = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2
-    el.scrollTo({ left: Math.max(0, target), behavior: 'smooth' })
-    // Optimistically set index; syncIndex will correct it on scroll settle
+    el.scrollTo({ left: Math.max(0, card.offsetLeft - (el.clientWidth - card.clientWidth) / 2), behavior: 'smooth' })
     setActiveIndex(index)
   }, [])
 
+  const { pause, resume } = useAutoScroll({ scrollRef, length: filtered.length, activeIndex, scrollToIndex })
+
   const go = (dir: 'prev' | 'next') => {
-    const next = dir === 'next'
-      ? Math.min(activeIndex + 1, filtered.length - 1)
-      : Math.max(activeIndex - 1, 0)
-    scrollToIndex(next)
+    pause()
+    resume(4000)
+    scrollToIndex(dir === 'next' ? Math.min(activeIndex + 1, filtered.length - 1) : Math.max(activeIndex - 1, 0))
   }
 
-  // Reset on filter change
   useEffect(() => {
     setActiveIndex(0)
     if (scrollRef.current) scrollRef.current.scrollLeft = 0
@@ -80,7 +64,6 @@ export default function Works() {
           subheading={content.works.subheading}
         />
 
-        {/* Filters */}
         <motion.div {...inViewProps(0)} className="flex flex-wrap justify-center gap-2 mb-10">
           {content.works.filters.map((filter) => (
             <motion.button
@@ -97,8 +80,12 @@ export default function Works() {
       </div>
 
       {/* ── Carousel ── */}
-      <motion.div {...inViewProps(0.05)} className="relative">
-        {/* Prev arrow */}
+      <motion.div
+        {...inViewProps(0.05)}
+        className="relative"
+        onMouseEnter={pause}
+        onMouseLeave={() => resume(1200)}
+      >
         <button
           onClick={() => go('prev')}
           disabled={activeIndex === 0}
@@ -107,7 +94,6 @@ export default function Works() {
           <ChevronLeft size={18} />
         </button>
 
-        {/* Next arrow */}
         <button
           onClick={() => go('next')}
           disabled={activeIndex === filtered.length - 1}
@@ -116,10 +102,11 @@ export default function Works() {
           <ChevronRight size={18} />
         </button>
 
-        {/* Scroll track — snap-center gives each card a perfect snap point */}
         <div
           ref={scrollRef}
           onScroll={syncIndex}
+          onPointerDown={() => { pause(); resume(4500) }}
+          onWheel={(e) => { if (Math.abs(e.deltaX) > 5) { pause(); resume(3000) } }}
           className="flex overflow-x-auto gap-5 pb-4"
           style={{
             scrollSnapType: 'x mandatory',
@@ -139,13 +126,8 @@ export default function Works() {
               href={work.href}
               whileHover={{ y: -5 }}
               className="group overflow-hidden rounded-2xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-[0_16px_48px_rgba(0,102,255,0.12)] transition-colors block"
-              style={{
-                flexShrink: 0,
-                width: 'clamp(280px, 38vw, 400px)',
-                scrollSnapAlign: 'center',
-              }}
+              style={{ flexShrink: 0, width: 'clamp(280px, 38vw, 400px)', scrollSnapAlign: 'center' }}
             >
-              {/* Image */}
               <div className="relative overflow-hidden" style={{ aspectRatio: '16/11' }}>
                 <motion.img
                   src={work.image}
@@ -177,15 +159,12 @@ export default function Works() {
                 </motion.div>
               </div>
 
-              {/* Content */}
               <div className="p-5">
                 <h3 className="display-font font-bold text-slate-900 mb-3 group-hover:text-blue-600 transition-colors">
                   {work.title}
                 </h3>
                 <div className="flex flex-wrap gap-1.5">
-                  {work.tags.map((tag) => (
-                    <span key={tag} className="tech-badge">{tag}</span>
-                  ))}
+                  {work.tags.map((tag) => <span key={tag} className="tech-badge">{tag}</span>)}
                 </div>
               </div>
             </motion.a>
@@ -193,28 +172,23 @@ export default function Works() {
         </div>
       </motion.div>
 
-      {/* ── Pagination dots ── */}
+      {/* Dots */}
       <div className="flex justify-center items-center gap-2 mt-5">
         {filtered.map((_, i) => (
           <button
             key={i}
-            onClick={() => scrollToIndex(i)}
+            onClick={() => { pause(); resume(4000); scrollToIndex(i) }}
             aria-label={`Go to slide ${i + 1}`}
-            className={`rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? 'w-6 h-2 bg-blue-600'
-                : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'
-            }`}
+            className={`rounded-full transition-all duration-300 ${i === activeIndex ? 'w-6 h-2 bg-blue-600' : 'w-2 h-2 bg-slate-300 hover:bg-slate-500'}`}
           />
         ))}
       </div>
 
-      {/* CTA */}
       <div className="max-w-7xl mx-auto px-6">
         <motion.div {...inViewProps(0.1)} className="text-center mt-12">
           <p className="text-slate-500 mb-5 text-base">Have a project in mind? Let's build it together.</p>
           <motion.button
-            onClick={() => { document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' }) }}
+            onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
             className="btn-primary"
             whileHover={{ scale: 1.04, boxShadow: '0 10px 28px rgba(0,102,255,0.38)' }}
             whileTap={{ scale: 0.97 }}

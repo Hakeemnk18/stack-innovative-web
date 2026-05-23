@@ -144,9 +144,8 @@
     "filters": [
       "All",
       "Web App",
-      "Mobile App",
-      "E-Commerce",
-      "Design"
+      "Portfolio Website",
+      "E-Commerce"
     ],
     "items": [
       {
@@ -154,7 +153,7 @@
         "title": "Art Space",
         "category": "E-Commerce",
         "description": "Modern art product showcase website with responsive landing and product pages integrated with WhatsApp ordering.",
-        "image": "https://placehold.co/700x480/0F172A/0066FF?text=FinTech+Dashboard",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1779515471/Screenshot_2026-05-23_112046_ailfrb.png",
         "gradient": "from-blue-600 to-blue-900",
         "tags": [
           "React",
@@ -205,35 +204,8 @@
           "Tailwind"
         ],
         "href": "#"
-      },
-      {
-        "id": "project-5",
-        "title": "TableFlex Booking",
-        "category": "Web App",
-        "description": "Restaurant reservation management system with real-time table availability and automated confirmations.",
-        "image": "https://placehold.co/700x480/0F172A/F59E0B?text=TableFlex",
-        "gradient": "from-amber-600 to-amber-900",
-        "tags": [
-          "React",
-          "Express",
-          "MongoDB"
-        ],
-        "href": "#"
-      },
-      {
-        "id": "project-6",
-        "title": "Nexora Corporate",
-        "category": "Design",
-        "description": "Professional corporate website with headless CMS integration, multi-language support, and SEO optimization.",
-        "image": "https://placehold.co/700x480/0F172A/EF4444?text=Nexora+Corp",
-        "gradient": "from-red-600 to-red-900",
-        "tags": [
-          "Next.js",
-          "Contentful",
-          "SEO"
-        ],
-        "href": "#"
       }
+      
     ]
   },
   "stats": [
@@ -356,61 +328,61 @@
     "heading": "What Our Clients Say",
     "subheading": "Real feedback from real clients who trusted us with their projects",
     "items": [
-      {
-        "id": "t1",
-        "name": "Alex Morgan",
-        "role": "CEO, TechVentures",
-        "initials": "AM",
-        "color": "#0066FF",
-        "rating": 5,
-        "text": "Stack Innovative delivered our dashboard ahead of schedule and the quality was exceptional. They understood our vision immediately and executed with precision. Highly recommend."
-      },
-      {
-        "id": "t2",
-        "name": "Sarah Chen",
-        "role": "Founder, StyleHive",
-        "initials": "SC",
-        "color": "#7C3AED",
-        "rating": 5,
-        "text": "Our Shopify store conversion rate increased by 40% after the redesign. Their attention to UX detail and performance optimization was truly impressive. Best investment we made."
-      },
-      {
-        "id": "t3",
-        "name": "Marcus Johnson",
-        "role": "CTO, FitPulse",
-        "initials": "MJ",
-        "color": "#10B981",
-        "rating": 5,
-        "text": "The mobile app they built has 4.8 stars on the App Store. Clean code, great communication throughout, and they genuinely cared about the end product. Exceptional team."
-      },
-      {
-        "id": "t4",
-        "name": "Priya Patel",
-        "role": "Marketing Director, Nexora",
-        "initials": "PP",
-        "color": "#F59E0B",
-        "rating": 5,
-        "text": "From the first call to launch, the experience was seamless. They brought ideas we hadn't even thought of and the final site is exactly what we needed. 10/10 would work with again."
-      },
-      {
-        "id": "t5",
-        "name": "David Torres",
-        "role": "Owner, TableFlex",
-        "initials": "DT",
-        "color": "#EF4444",
-        "rating": 5,
-        "text": "The booking system they built completely transformed our operations. Fewer no-shows, automated reminders, and our staff loves the interface. ROI was incredible."
-      },
-      {
-        "id": "t6",
-        "name": "Lisa Kim",
-        "role": "CEO, NovaSaaS",
-        "initials": "LK",
-        "color": "#00D4FF",
-        "rating": 5,
-        "text": "Working with Stack Innovative felt like having an in-house team. Fast turnaround, beautiful design, and they nailed our brand identity. Our leads doubled in the first month."
-      }
-    ]
+  {
+    "id": "t1",
+    "name": "Naji",
+    "role": "Founder, Art Space",
+    "initials": "NA",
+    "color": "#0066FF",
+    "rating": 5,
+    "text": "Stack Innovative perfectly understood the premium look we wanted for Art Space. The website feels modern, smooth, and truly represents our brand identity. The entire process was fast and professional."
+  },
+  {
+    "id": "t2",
+    "name": "Rashid",
+    "role": "Co-Founder, Nivah Fashion Hub",
+    "initials": "RA",
+    "color": "#7C3AED",
+    "rating": 5,
+    "text": "They built a complete e-commerce experience exactly how we envisioned it. From product management to payment integration, everything was handled professionally with great attention to detail."
+  },
+  {
+    "id": "t3",
+    "name": "Nusha",
+    "role": "Co-Founder, Nivah Fashion Hub",
+    "initials": "NU",
+    "color": "#EC4899",
+    "rating": 5,
+    "text": "The design quality and responsiveness exceeded our expectations. Stack Innovative was easy to work with, highly supportive, and always quick to implement feedback throughout the project."
+  },
+  {
+    "id": "t4",
+    "name": "Nabeel Azlem",
+    "role": "Co-Founder, Yatra Soul",
+    "initials": "NB",
+    "color": "#10B981",
+    "rating": 5,
+    "text": "Our travel website now feels modern, clean, and much more engaging for visitors. They focused on both design and user experience, which made a huge difference for our brand."
+  },
+  {
+    "id": "t5",
+    "name": "Naseem Muhammed",
+    "role": "Co-Founder, Yatra Soul",
+    "initials": "NM",
+    "color": "#F59E0B",
+    "rating": 5,
+    "text": "The team delivered exactly what we needed with excellent communication from start to finish. The final website looks premium and performs smoothly across all devices."
+  },
+  {
+    "id": "t6",
+    "name": "Haris VP",
+    "role": "Co-Founder, Mentor Live",
+    "initials": "HV",
+    "color": "#EF4444",
+    "rating": 5,
+    "text": "Stack Innovative transformed our idea into a polished platform with a clean interface and smooth user flow. Their speed, creativity, and technical execution were genuinely impressive."
+  }
+]
   },
   "ctaBanner": {
     "badge": "Let's Work Together",
