@@ -8,6 +8,8 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 const iconMap: Record<string, React.ElementType> = { Mail, Clock, Globe }
 
+
+
 const socialMeta: Record<string, { color: string; hoverBg: string; hoverText: string; svg: React.ReactNode }> = {
   instagram: {
     color: '#E1306C',
@@ -49,6 +51,16 @@ const socialMeta: Record<string, { color: string; hoverBg: string; hoverText: st
       </svg>
     ),
   },
+  youtube: {
+  color: '#FF0000',
+  hoverBg: 'hover:bg-[#FF0000]',
+  hoverText: 'hover:text-white hover:border-transparent',
+  svg: (
+    <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+      <path d="M23.498 6.186a2.997 2.997 0 0 0-2.11-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.388.566a2.997 2.997 0 0 0-2.11 2.12C0 8.074 0 12 0 12s0 3.926.502 5.814a2.997 2.997 0 0 0 2.11 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.388-.566a2.997 2.997 0 0 0 2.11-2.12C24 15.926 24 12 24 12s0-3.926-.502-5.814zM9.75 15.568V8.432L15.818 12 9.75 15.568z"/>
+    </svg>
+  ),
+},
 }
 
 interface FormData {

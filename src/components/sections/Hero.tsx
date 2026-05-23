@@ -4,19 +4,19 @@ import content from '../../data/content.json'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const techBadges = [
-  { label: 'React', color: '#61DAFB' },
-  { label: 'Next.js', color: '#FFFFFF' },
-  { label: 'TypeScript', color: '#3178C6' },
-  { label: 'Node.js', color: '#68A063' },
-  { label: 'Tailwind', color: '#38BDF8' },
-  { label: 'PostgreSQL', color: '#336791' },
-  { label: 'React Native', color: '#61DAFB' },
-  { label: 'Flutter', color: '#54C5F8' },
+const serviceBadges = [
+  { label: 'Mobile Apps', color: '#61DAFB' },
+  { label: 'Portfolio Websites', color: '#FFFFFF' },
+  { label: 'E-Commerce', color: '#3178C6' },
+  { label: 'ERP Systems', color: '#68A063' },
+  { label: 'HRM Solutions', color: '#38BDF8' },
+  { label: 'CRM Platforms', color: '#336791' },
+  { label: 'Billing Software', color: '#54C5F8' },
+  { label: 'Custom Web Apps', color: '#8B5CF6' },
 ]
 
 const floatingCards = [
-  { icon: Code2, label: '50+ Projects', sub: 'Delivered', color: '#0066FF', delay: 0 },
+  { icon: Zap, label: 'Fast Delivery', sub: 'Quick Turnaround', color: '#0066FF', delay: 0 },
   { icon: Zap, label: '99% Satisfaction', sub: 'Client Rating', color: '#10B981', delay: 1.5 },
   { icon: Globe, label: 'Worldwide', sub: 'Remote Ready', color: '#7C3AED', delay: 3 },
 ]
@@ -237,7 +237,7 @@ export default function Hero() {
 
                 {/* Tech row */}
                 <div className="flex items-center gap-2 py-1">
-                  {techBadges.slice(0, 5).map((t, i) => (
+                  {serviceBadges.slice(0, 5).map((t, i) => (
                     <div
                       key={i}
                       className="px-2.5 py-1 rounded-full border flex-shrink-0"
@@ -267,12 +267,12 @@ export default function Hero() {
         >
           <div className="text-center mb-6">
             <span className="text-slate-600 text-xs font-medium tracking-widest uppercase">
-              Technologies We Use
+              Services We Offer
             </span>
           </div>
           <div className="marquee-wrapper">
             <div className="marquee-track">
-              {[...techBadges, ...techBadges].map((t, i) => (
+              {[...serviceBadges, ...serviceBadges].map((t, i) => (
                 <div
                   key={i}
                   className="flex-shrink-0 flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/10 bg-white/4 text-sm font-medium text-white/60"
