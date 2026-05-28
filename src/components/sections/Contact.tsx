@@ -67,12 +67,12 @@ interface FormData {
   name: string
   email: string
   service: string
-  budget: string
+  phone: string
   message: string
 }
 
 export default function Contact() {
-  const [form, setForm] = useState<FormData>({ name: '', email: '', service: '', budget: '', message: '' })
+  const [form, setForm] = useState<FormData>({ name: '', email: '', service: '', phone: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
@@ -95,7 +95,7 @@ export default function Contact() {
       data.append('message', form.message)
       data.append('subject', `New Project Inquiry from ${form.name}`)
       if (form.service) data.append('service', form.service)
-      if (form.budget)  data.append('budget', form.budget)
+      if (form.phone)   data.append('phone', form.phone)
       // Honeypot anti-spam
       data.append('botcheck', '')
 
@@ -107,7 +107,7 @@ export default function Contact() {
 
       if (json.success) {
         setSubmitted(true)
-        setForm({ name: '', email: '', service: '', budget: '', message: '' })
+        setForm({ name: '', email: '', service: '', phone: '', message: '' })
       } else {
         setError(json.message ?? 'Something went wrong. Please try again.')
       }
@@ -249,7 +249,7 @@ export default function Contact() {
                     Thanks for reaching out. We'll review your project and get back to you within 24 hours.
                   </p>
                   <button
-                    onClick={() => { setSubmitted(false); setForm({ name: '', email: '', service: '', budget: '', message: '' }) }}
+                    onClick={() => { setSubmitted(false); setForm({ name: '', email: '', service: '', phone: '', message: '' }) }}
                     className="btn-secondary mt-6"
                   >
                     Send Another Message
@@ -283,11 +283,9 @@ export default function Contact() {
                       </select>
                     </div>
                     <div>
-                      <label className="form-label">{contact.formLabels.budget}</label>
-                      <select name="budget" value={form.budget} onChange={handleChange} className="form-input">
-                        <option value="">Select a budget</option>
-                        {contact.budgets.map((b) => <option key={b} value={b}>{b}</option>)}
-                      </select>
+                      <label className="form-label">{contact.formLabels.phone}</label>
+                      <input type="tel" name="phone" value={form.phone} onChange={handleChange}
+                        placeholder={contact.formLabels.phonePlaceholder} className="form-input" />
                     </div>
                   </div>
 
