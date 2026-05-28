@@ -9,6 +9,7 @@ import content from '../../data/content.json'
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
 export default function Works() {
+  
   const [activeFilter, setActiveFilter] = useState('All')
   const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
