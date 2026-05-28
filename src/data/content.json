@@ -356,15 +356,6 @@
     "text": "The design quality and responsiveness exceeded our expectations. Stack Innovative was easy to work with, highly supportive, and always quick to implement feedback throughout the project."
   },
   {
-    "id": "t4",
-    "name": "Nabeel Azlem",
-    "role": "Co-Founder, Yatra Soul",
-    "initials": "NB",
-    "color": "#10B981",
-    "rating": 5,
-    "text": "Our travel website now feels modern, clean, and much more engaging for visitors. They focused on both design and user experience, which made a huge difference for our brand."
-  },
-  {
     "id": "t5",
     "name": "Naseem Muhammed",
     "role": "Co-Founder, Yatra Soul",
@@ -401,17 +392,18 @@
     "badge": "Get in Touch",
     "heading": "Start Your Project",
     "subheading": "Tell us about your idea. We'll get back to you within 24 hours.",
-    "email": "hello@stackinnovative.com",
+    "email": "stackinnovativee@gmail.com",
     "phone": "+1 (555) 000-0000",
     "location": "Remote — Worldwide",
     "formLabels": {
       "name": "Full Name",
       "email": "Email Address",
       "service": "Service Needed",
-      "budget": "Estimated Budget",
+      "phone": "Phone Number",
       "message": "Tell Us About Your Project",
       "namePlaceholder": "John Smith",
       "emailPlaceholder": "john@company.com",
+      "phonePlaceholder": "+91 98765 43210",
       "messagePlaceholder": "Describe your project, goals, and timeline...",
       "submit": "Send Message",
       "sending": "Sending..."
@@ -470,6 +462,11 @@
         "id": "facebook",
         "label": "Facebook",
         "href": "https://facebook.com/stackinnovative"
+      },
+      {
+        "id": "youtube",
+        "label": "YouTube",
+        "href": "https://www.youtube.com/@StackInnovative"
       }
     ]
   },

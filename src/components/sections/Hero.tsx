@@ -76,7 +76,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: EASE }}
-              className="text-slate-400 text-lg sm:text-xl leading-relaxed max-w-lg"
+              className="text-slate-400 text-lg sm:text-xl leading-relaxed"
+              style={{ maxWidth: 'min(32rem, calc(100vw - 3rem))' }}
             >
               {content.hero.subtitle}
             </motion.p>
