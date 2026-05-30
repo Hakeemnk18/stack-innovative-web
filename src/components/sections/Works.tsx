@@ -13,6 +13,7 @@ export default function Works() {
   const [activeFilter, setActiveFilter] = useState('All')
   const [activeIndex, setActiveIndex] = useState(0)
   const scrollRef = useRef<HTMLDivElement>(null)
+  
 
   const filtered = activeFilter === 'All'
     ? content.works.items
