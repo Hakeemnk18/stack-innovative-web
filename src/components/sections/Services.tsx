@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Globe, Smartphone, Palette, ShoppingCart, TrendingUp, Shield, ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'

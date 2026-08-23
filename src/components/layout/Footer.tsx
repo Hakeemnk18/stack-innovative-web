@@ -1,4 +1,8 @@
+'use client'
+
 import { useState } from 'react'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { inViewProps } from '../../lib/motion'
@@ -47,6 +51,9 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 export default function Footer() {
   const [email, setEmail] = useState('')
   const [subscribed, setSubscribed] = useState(false)
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHome = pathname === '/'
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -63,8 +70,12 @@ export default function Footer() {
           {/* Brand + Newsletter */}
           <motion.div {...inViewProps(0)} className="lg:col-span-2 space-y-6">
             <motion.a
-              href="#"
-              onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+              href="/"
+              onClick={(e) => {
+                e.preventDefault()
+                if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' })
+                else router.push('/')
+              }}
               className="inline-flex items-center gap-2.5 group"
               whileHover={{ scale: 1.02 }}
             >
@@ -133,18 +144,23 @@ export default function Footer() {
               <ul className="space-y-0.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => {
-                        if (link.href.startsWith('#')) {
+                    {link.href.startsWith('#') ? (
+                      <a
+                        href={link.href}
+                        onClick={(e) => {
                           e.preventDefault()
-                          document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' })
-                        }
-                      }}
-                      className="footer-link"
-                    >
-                      {link.label}
-                    </a>
+                          if (isHome) document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' })
+                          else router.push('/' + link.href)
+                        }}
+                        className="footer-link"
+                      >
+                        {link.label}
+                      </a>
+                    ) : (
+                      <Link href={link.href} className="footer-link">
+                        {link.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
