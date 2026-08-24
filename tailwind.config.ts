@@ -1,12 +1,12 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'Plus Jakarta Sans', 'sans-serif'],
-        display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+        sans: ['var(--font-inter)', 'var(--font-jakarta)', 'sans-serif'],
+        display: ['var(--font-jakarta)', 'var(--font-inter)', 'sans-serif'],
       },
       colors: {
         primary: {

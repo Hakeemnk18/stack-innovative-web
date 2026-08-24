@@ -1,4 +1,7 @@
+'use client'
+
 import { useState, useEffect } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
 import { useScrollPosition } from '../../hooks/useScrollPosition'
@@ -11,24 +14,36 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('')
   const scrollY = useScrollPosition()
   const scrolled = scrollY > 30
+  const pathname = usePathname()
+  const router = useRouter()
+  const isHome = pathname === '/'
 
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 300, damping: 40 })
 
   useEffect(() => {
-    const ids = content.nav.links.map((l) => l.href.replace('#', ''))
+    if (!isHome) return
+    const ids = content.nav.links.filter((l) => l.href.startsWith('#')).map((l) => l.href.replace('#', ''))
     const observer = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) setActiveSection(e.target.id) }),
       { threshold: 0.3 }
     )
     ids.forEach((id) => { const el = document.getElementById(id); if (el) observer.observe(el) })
     return () => observer.disconnect()
-  }, [])
+  }, [isHome])
 
   const go = (href: string) => {
     setMobileOpen(false)
-    if (href.startsWith('#')) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+    if (href.startsWith('#')) {
+      if (isHome) document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
+      else router.push('/' + href)
+    } else {
+      router.push(href)
+    }
   }
+
+  const isLinkActive = (href: string) =>
+    href.startsWith('#') ? isHome && activeSection === href.replace('#', '') : pathname.startsWith(href)
 
   return (
     <>
@@ -50,8 +65,12 @@ export default function Navbar() {
 
               {/* Logo */}
               <motion.a
-                href="#"
-                onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }) }}
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (isHome) window.scrollTo({ top: 0, behavior: 'smooth' })
+                  else router.push('/')
+                }}
                 className="flex items-center gap-2.5 flex-shrink-0"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -77,7 +96,7 @@ export default function Navbar() {
               {/* Desktop nav links */}
               <div className="hidden lg:flex items-center gap-0.5">
                 {content.nav.links.map((link, i) => {
-                  const isActive = activeSection === link.href.replace('#', '')
+                  const isActive = isLinkActive(link.href)
                   return (
                     <motion.button
                       key={link.label}

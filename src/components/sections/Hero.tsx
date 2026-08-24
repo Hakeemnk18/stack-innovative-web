@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { ArrowRight, Code2, Zap, Globe } from 'lucide-react'
 import content from '../../data/content.json'
@@ -61,13 +63,13 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
               className="space-y-1"
             >
-              <h1 className="display-font font-black text-white leading-none text-5xl sm:text-6xl xl:text-7xl">
+              <h1 className="display-font font-black text-white leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
                 {content.hero.headline}
               </h1>
-              <h1 className="display-font font-black leading-none text-5xl sm:text-6xl xl:text-7xl gradient-text">
+              <h1 className="display-font font-black leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl gradient-text">
                 {content.hero.headlineAccent}
               </h1>
-              <h1 className="display-font font-black text-white/40 leading-none text-5xl sm:text-6xl xl:text-7xl">
+              <h1 className="display-font font-black text-white/40 leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
                 {content.hero.headline2}
               </h1>
             </motion.div>

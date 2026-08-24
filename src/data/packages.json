@@ -1,0 +1,78 @@
+{
+  "badge": "Packages",
+  "heading": "Simple, Transparent Pricing",
+  "subheading": "One flat price. Everything you need to go live — nothing you don't.",
+  "items": [
+    {
+      "id": "portfolio-website",
+      "slug": "portfolio-website-package",
+      "name": "Portfolio Website Package",
+      "tagline": "Get a complete, professional portfolio website — live, launched, and ready to share. No templates that look like everyone else's. No confusing tech to manage.",
+      "price": 4999,
+      "currency": "INR",
+      "cadence": "one-time",
+      "popular": true,
+      "included": [
+        {
+          "title": "Multi-page portfolio website",
+          "desc": "Built to show your work the right way"
+        },
+        {
+          "title": "Delivered in 7 days",
+          "desc": "Live and launched within a week of kickoff, not months later"
+        },
+        {
+          "title": "Email & WhatsApp integration",
+          "desc": "Visitors can reach you directly, no middleman"
+        },
+        {
+          "title": "SEO & GEO ready",
+          "desc": "Built to get found on Google and show up correctly when people search using AI tools"
+        },
+        {
+          "title": "Admin dashboard (CMS)",
+          "desc": "Update your own content anytime, no coding needed"
+        },
+        {
+          "title": "Google Analytics setup",
+          "desc": "See exactly who's visiting your site and where they come from"
+        },
+        {
+          "title": "Performance tested",
+          "desc": "Fast loading, no lag, works smoothly on any device"
+        },
+        {
+          "title": "Initial content setup",
+          "desc": "We help you get your first version live with your content in place"
+        }
+      ],
+      "alsoIncluded": [
+        {
+          "title": "Free hosting included",
+          "desc": "Your site stays live on our platform — no hosting bill from us"
+        },
+        {
+          "title": "Free SSL security",
+          "desc": "The padlock icon that builds trust with visitors"
+        },
+        {
+          "title": "Mobile-friendly design",
+          "desc": "Works smoothly on every screen size"
+        },
+        {
+          "title": "A live walkthrough call",
+          "desc": "We personally show you how to manage your own site"
+        },
+        {
+          "title": "7 days of free bug fixes",
+          "desc": "After launch, we've got you covered"
+        }
+      ],
+      "cta": {
+        "primaryLabel": "Get This Package",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'm interested in the Portfolio Website Package (₹4,999). Can you share more details?"
+      }
+    }
+  ]
+}

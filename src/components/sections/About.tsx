@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { Zap, Lock, RefreshCw, HeartHandshake, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { inViewProps, inViewLeft, inViewRight } from '../../lib/motion'

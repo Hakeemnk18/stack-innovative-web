@@ -1,3 +1,5 @@
+'use client'
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Clock, Globe, Send, CheckCircle2, AlertCircle } from 'lucide-react'
@@ -89,7 +91,7 @@ export default function Contact() {
 
     try {
       const data = new FormData()
-      data.append('access_key', import.meta.env.VITE_WEB3FORMS_KEY ?? '')
+      data.append('access_key', process.env.NEXT_PUBLIC_WEB3FORMS_KEY ?? '')
       data.append('name', form.name)
       data.append('email', form.email)
       data.append('message', form.message)

@@ -1,12 +1,13 @@
+'use client'
+
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, MessageCircle } from 'lucide-react'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
 
-const WA_NUMBER = '917994285615'
-const WA_MESSAGE = encodeURIComponent("Hi! I'm interested in your web/app development services. Can we connect?")
-const WA_URL = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`
+const WA_URL = buildWhatsAppUrl("Hi! I'm interested in your web/app development services. Can we connect?")
 
 export default function WhatsAppButton() {
   const [open, setOpen] = useState(false)

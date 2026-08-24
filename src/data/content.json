@@ -15,6 +15,10 @@
         "href": "#services"
       },
       {
+        "label": "Packages",
+        "href": "/packages"
+      },
+      {
         "label": "Works",
         "href": "#works"
       },
@@ -409,6 +413,7 @@
       "sending": "Sending..."
     },
     "services": [
+      "Portfolio Website Package",
       "Web Development",
       "App Development",
       "UI/UX Design",
@@ -557,12 +562,12 @@
             "href": "#contact"
           },
           {
-            "label": "FAQ",
-            "href": "#"
+            "label": "Packages & Pricing",
+            "href": "/packages"
           },
           {
-            "label": "Support",
-            "href": "#"
+            "label": "FAQ",
+            "href": "/packages#faq"
           },
           {
             "label": "Project Inquiry",
