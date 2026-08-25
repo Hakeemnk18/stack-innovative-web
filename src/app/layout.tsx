@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import Script from 'next/script'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
 import WhatsAppButton from '../components/ui/WhatsAppButton'
 import content from '../data/content.json'
 import './globals.css'
+
+const GA_MEASUREMENT_ID = 'G-PQRE73EFQ7'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -136,6 +139,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <div className="w-full min-h-screen">
           <Navbar />
           <main className="w-full">{children}</main>
