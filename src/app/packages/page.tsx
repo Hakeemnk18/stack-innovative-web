@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import SectionHeader from '../../components/ui/SectionHeader'
-import PackageCard from '../../components/packages/PackageCard'
+import PackageScroller from '../../components/packages/PackageScroller'
 import PackagesFAQ from '../../components/packages/PackagesFAQ'
 import packagesData from '../../data/packages.json'
 import faqData from '../../data/faq.json'
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
   },
 }
 
-const productJsonLd = packagesData.items.map((pkg) => ({
+const productJsonLd = packagesData.items.filter((pkg) => !pkg.custom).map((pkg) => ({
   '@context': 'https://schema.org',
   '@type': 'Product',
   name: pkg.name,
@@ -75,12 +75,8 @@ export default function PackagesPage() {
       </section>
 
       <section className="pb-24 lg:pb-32">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-8">
-            {packagesData.items.map((pkg, i) => (
-              <PackageCard key={pkg.id} pkg={pkg} variant="detailed" delay={0.05 + i * 0.1} />
-            ))}
-          </div>
+        <div className="max-w-7xl mx-auto md:px-6">
+          <PackageScroller items={packagesData.items} variant="detailed" />
         </div>
       </section>
 

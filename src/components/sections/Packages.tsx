@@ -4,25 +4,23 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
-import PackageCard from '../packages/PackageCard'
+import PackageScroller from '../packages/PackageScroller'
 import packages from '../../data/packages.json'
 import { inViewProps } from '../../lib/motion'
 
 export default function Packages() {
   return (
     <section id="packages" className="py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6">
-        <SectionHeader
-          badge={packages.badge}
-          heading={packages.heading}
-          subheading={packages.subheading}
-        />
-
-        <div className="flex flex-wrap justify-center gap-8">
-          {packages.items.map((pkg, i) => (
-            <PackageCard key={pkg.id} pkg={pkg} variant="compact" delay={0.05 + i * 0.1} />
-          ))}
+      <div className="max-w-7xl mx-auto md:px-6">
+        <div className="px-6 md:px-0">
+          <SectionHeader
+            badge={packages.badge}
+            heading={packages.heading}
+            subheading={packages.subheading}
+          />
         </div>
+
+        <PackageScroller items={packages.items} variant="compact" />
 
         <motion.div {...inViewProps(0.15)} className="text-center mt-12">
           <Link href="/packages" className="btn-secondary group">

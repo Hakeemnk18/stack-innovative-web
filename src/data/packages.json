@@ -73,6 +73,189 @@
         "secondaryLabel": "Ask on WhatsApp",
         "whatsappMessage": "Hi! I'm interested in the Portfolio Website Package (₹4,999). Can you share more details?"
       }
+    },
+    {
+      "id": "basic-ecommerce",
+      "slug": "basic-ecommerce-package",
+      "name": "Basic Ecommerce Package",
+      "tagline": "A complete, ready-to-sell online store — live, launched, and built to match your brand. No template that looks like everyone else's, no confusing tech to manage.",
+      "price": 11999,
+      "currency": "INR",
+      "cadence": "one-time",
+      "limitedOffer": true,
+      "included": [
+        {
+          "title": "Custom UI Design",
+          "desc": "Your store's colors, layout, and look are designed to match your brand — not a generic template."
+        },
+        {
+          "title": "Complete Online Store",
+          "desc": "Fully responsive store built for mobile, tablet, and desktop, with a clean, modern design."
+        },
+        {
+          "title": "Product Listing & Details Pages",
+          "desc": "Professional product pages, with support for multiple colors and sizes per product."
+        },
+        {
+          "title": "Wishlist",
+          "desc": "Customers can save products they like — no login or signup needed."
+        },
+        {
+          "title": "Simple Cart & One-Page Checkout",
+          "desc": "Just name, contact, and address to complete an order — no account required, so fewer customers drop off."
+        },
+        {
+          "title": "Instant WhatsApp Order Alerts",
+          "desc": "You and your customer both get an automatic order confirmation on WhatsApp the moment an order is placed."
+        },
+        {
+          "title": "Secure Online Payments",
+          "desc": "Accept UPI, cards, and net banking safely through a trusted payment gateway."
+        },
+        {
+          "title": "Admin Dashboard",
+          "desc": "See every order in one place and update order status as you fulfill them."
+        },
+        {
+          "title": "Business Settings",
+          "desc": "Manage delivery charge, return policy, and refund policy yourself from the admin panel — the storefront picks up the changes automatically."
+        },
+        {
+          "title": "Sales & Revenue Report",
+          "desc": "See your total revenue, total orders, and average order value at a glance, with a day-by-day breakdown you can export to CSV anytime."
+        },
+        {
+          "title": "Product & Category Management",
+          "desc": "Add, edit, or remove products, variants, and stock levels anytime — no developer needed."
+        },
+        {
+          "title": "Easy Content Updates",
+          "desc": "Change your homepage text, images, and product descriptions yourself, whenever you want."
+        }
+      ],
+      "alsoIncluded": [
+        {
+          "title": "Free SSL Security",
+          "desc": "The secure padlock that protects customer payment details and builds trust at checkout."
+        },
+        {
+          "title": "SEO Ready",
+          "desc": "Set up to get found on Google — proper page titles, clean links, and a sitemap."
+        },
+        {
+          "title": "AI Search Ready (GEO)",
+          "desc": "Content structured so AI tools like ChatGPT and Google AI Overviews can find and recommend your store."
+        },
+        {
+          "title": "Analytics & Visitor Tracking",
+          "desc": "Free, powered by Google — see who's visiting your store and which products are converting."
+        },
+        {
+          "title": "No Login Needed for Customers",
+          "desc": "Faster checkout, nothing to sign up for — less friction, more completed sales."
+        },
+        {
+          "title": "Live Walkthrough Call",
+          "desc": "We personally walk you through managing your orders, products, and store — no guesswork."
+        },
+        {
+          "title": "3 Months Free Bug Support",
+          "desc": "Free fixes for any functional issues after launch."
+        },
+        {
+          "title": "Delivered Within 30 Days",
+          "desc": "Live and ready to sell within a month of kickoff."
+        }
+      ],
+      "note": "₹11,999 covers development only. Hosting, domain name, and payment gateway charges are third-party services, billed directly to the client — not included in this price.",
+      "cta": {
+        "primaryLabel": "Get This Package",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'm interested in the Basic Ecommerce Package (₹11,999). Can you share more details?"
+      }
+    },
+    {
+      "id": "stable-ecommerce",
+      "slug": "stable-ecommerce-package",
+      "name": "Stable Ecommerce Package",
+      "tagline": "A step up from Basic — a custom-designed store with the tools to run real promotions, keep customers coming back, and manage a growing team.",
+      "price": 19999,
+      "currency": "INR",
+      "cadence": "one-time",
+      "limitedOffer": true,
+      "includedIntro": "Everything in the Basic Ecommerce Package, plus:",
+      "included": [
+        {
+          "title": "Fully Custom Website Design",
+          "desc": "Unique layout and visual design built specifically for your brand, not adapted from a template."
+        },
+        {
+          "title": "Customer Accounts & Order History",
+          "desc": "Customers can create an account, save addresses, and view past orders for faster repeat purchases."
+        },
+        {
+          "title": "Discount Coupons & Promo Codes",
+          "desc": "Run sales and promotions with your own custom discount codes."
+        },
+        {
+          "title": "Abandoned Cart Recovery",
+          "desc": "Automatic WhatsApp reminder sent to customers who added items but didn't finish checkout — recovers sales you'd otherwise lose."
+        },
+        {
+          "title": "Product Reviews & Ratings",
+          "desc": "Genuine customer reviews on product pages build trust and push conversions."
+        },
+        {
+          "title": "Multiple Staff Logins with Permissions",
+          "desc": "Add your team to help run the store, with control over what each person can see and do — for example, staff can update orders but not change prices or delete products."
+        },
+        {
+          "title": "Advanced Sales Insights",
+          "desc": "Goes beyond basic totals — see your best-selling products, revenue trends over time, and customer buying patterns."
+        },
+        {
+          "title": "Blog / Content Section",
+          "desc": "Publish articles and updates that help you rank higher on Google over time."
+        },
+        {
+          "title": "Priority Support — 6 Months Free Bug Fixes",
+          "desc": "Double the standard support window, plus faster response times."
+        }
+      ],
+      "alsoIncluded": [],
+      "note": "₹19,999 covers development only. Hosting, domain name, and payment gateway charges are third-party services, billed directly to the client — not included in this price. Shipping/courier integration and Cash on Delivery are not offered in this package.",
+      "cta": {
+        "primaryLabel": "Get This Package",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'm interested in the Stable Ecommerce Package (₹19,999). Can you share more details?"
+      }
+    },
+    {
+      "id": "custom-package",
+      "slug": "custom-package",
+      "name": "Custom Package",
+      "tagline": "Not sure which package fits, or need something none of them quite cover? Let's talk it through first — free of charge.",
+      "cadence": "consultation",
+      "custom": true,
+      "highlights": [
+        {
+          "title": "Free Consultation Call",
+          "desc": "Hop on a no-obligation call with us to talk through what you're building — it costs you nothing."
+        },
+        {
+          "title": "We Learn Your Priorities",
+          "desc": "We dig into what your business actually needs and what matters most to you before recommending anything."
+        },
+        {
+          "title": "A Package Built Around You",
+          "desc": "We tailor the scope and pricing to match your goals, with you involved at every step of the way."
+        }
+      ],
+      "cta": {
+        "primaryLabel": "Book a Free Call",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'd like to book a free consultation call to discuss a custom package tailored to my needs."
+      }
     }
   ]
 }
