@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Check, ArrowRight, Sparkles } from 'lucide-react'
+import { Check, ArrowRight, Sparkles, Timer, PhoneCall } from 'lucide-react'
 import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
@@ -12,17 +12,22 @@ interface PackageFeature {
   desc: string
 }
 
-interface PackageItem {
+export interface PackageItem {
   id: string
   slug: string
   name: string
   tagline: string
-  price: number
-  currency: string
+  price?: number
+  currency?: string
   cadence: string
   popular?: boolean
-  included: PackageFeature[]
-  alsoIncluded: PackageFeature[]
+  limitedOffer?: boolean
+  custom?: boolean
+  includedIntro?: string
+  included?: PackageFeature[]
+  alsoIncluded?: PackageFeature[]
+  highlights?: PackageFeature[]
+  note?: string
   cta: {
     primaryLabel: string
     secondaryLabel: string
@@ -47,14 +52,15 @@ function formatPrice(price: number, currency: string) {
 export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: PackageCardProps) {
   const compact = variant === 'compact'
   const waUrl = buildWhatsAppUrl(pkg.cta.whatsappMessage)
+  const listItems = pkg.custom ? pkg.highlights ?? [] : pkg.included ?? []
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
+      viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
-      className="card-base p-8 lg:p-10 flex flex-col relative w-full max-w-md mx-auto lg:max-w-lg"
+      className={`card-base shadow-card flex flex-col relative w-full max-w-md mx-auto ${compact ? 'p-8 lg:p-10 lg:max-w-lg' : 'p-6 lg:p-8 lg:max-w-none'}`}
     >
       {pkg.popular && (
         <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 mb-5 bg-gradient-primary rounded-full text-white text-xs font-semibold shadow-lg">
@@ -63,18 +69,44 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         </div>
       )}
 
+      {pkg.limitedOffer && (
+        <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 mb-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full text-white text-xs font-semibold shadow-lg">
+          <Timer size={12} />
+          Limited Time Offer
+        </div>
+      )}
+
+      {pkg.custom && (
+        <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 mb-5 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full text-white text-xs font-semibold shadow-lg">
+          <PhoneCall size={12} />
+          Free Consultation
+        </div>
+      )}
+
       <h3 className="display-font font-bold text-slate-900 text-2xl mb-2">{pkg.name}</h3>
       <p className="text-slate-500 text-sm leading-relaxed mb-6">{pkg.tagline}</p>
 
-      <div className="flex items-baseline gap-2 mb-6">
-        <span className="display-font font-black text-slate-900 text-4xl lg:text-5xl">
-          {formatPrice(pkg.price, pkg.currency)}
-        </span>
-        <span className="text-slate-400 text-sm font-medium">/ {pkg.cadence}</span>
-      </div>
+      {pkg.custom ? (
+        <p className="display-font font-black text-slate-900 text-2xl lg:text-3xl mb-6">
+          Let&apos;s Talk First
+        </p>
+      ) : (
+        <div className="flex items-baseline gap-2 mb-6">
+          <span className="display-font font-black text-slate-900 text-4xl lg:text-5xl">
+            {formatPrice(pkg.price!, pkg.currency!)}
+          </span>
+          <span className="text-slate-400 text-sm font-medium">/ {pkg.cadence}</span>
+        </div>
+      )}
+
+      {pkg.includedIntro && (
+        <p className="text-slate-500 text-xs font-semibold uppercase tracking-widest mb-3">
+          {pkg.includedIntro}
+        </p>
+      )}
 
       <ul className="space-y-3 mb-2">
-        {(compact ? pkg.included.slice(0, 4) : pkg.included).map((item) => (
+        {(compact ? listItems.slice(0, 4) : listItems).map((item) => (
           <li key={item.title} className="flex items-start gap-3">
             <span className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
               <Check size={12} className="text-blue-600" strokeWidth={3} />
@@ -87,13 +119,13 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         ))}
       </ul>
 
-      {!compact && (
+      {!compact && !pkg.custom && (pkg.alsoIncluded?.length ?? 0) > 0 && (
         <>
           <div className="text-xs font-semibold text-slate-400 uppercase tracking-widest mt-6 mb-3">
             Also Included, No Extra Cost
           </div>
           <ul className="space-y-3 mb-2">
-            {pkg.alsoIncluded.map((item) => (
+            {(pkg.alsoIncluded ?? []).map((item) => (
               <li key={item.title} className="flex items-start gap-3">
                 <span className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center flex-shrink-0 mt-0.5">
                   <Check size={12} className="text-emerald-600" strokeWidth={3} />
@@ -106,6 +138,12 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
             ))}
           </ul>
         </>
+      )}
+
+      {!compact && pkg.note && (
+        <p className="text-slate-400 text-xs leading-relaxed mt-6 pt-4 border-t border-slate-100">
+          {pkg.note}
+        </p>
       )}
 
       <div className="flex-1" />

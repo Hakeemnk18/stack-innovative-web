@@ -208,8 +208,22 @@
           "Tailwind"
         ],
         "href": "#"
+      },
+      {
+        "id": "project-5",
+        "title": "Bigstore",
+        "category": "E-Commerce",
+        "description": "Stylish, modern storefront for a mobile phone and accessories shop, built to showcase flagship devices with a sleek, dark, product-first design.",
+        "image": "/works/bigstore.jpg",
+        "gradient": "from-slate-800 to-slate-950",
+        "tags": [
+          "React",
+          "TypeScript",
+          "Tailwind CSS"
+        ],
+        "href": "https://www.bigstoremobiles.com/"
       }
-      
+
     ]
   },
   "stats": [
