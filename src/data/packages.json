@@ -12,6 +12,14 @@
       "currency": "INR",
       "cadence": "one-time",
       "popular": true,
+      "highlightTitles": [
+        "Multi-page portfolio website",
+        "Delivered in 7 days",
+        "Email & WhatsApp integration",
+        "SEO & GEO ready",
+        "Admin dashboard (CMS)",
+        "Google Analytics setup"
+      ],
       "included": [
         {
           "title": "Multi-page portfolio website",
@@ -83,6 +91,14 @@
       "currency": "INR",
       "cadence": "one-time",
       "limitedOffer": true,
+      "highlightTitles": [
+        "Custom UI Design",
+        "Complete Online Store",
+        "Product Listing & Details Pages",
+        "Instant WhatsApp Order Alerts",
+        "Secure Online Payments",
+        "Admin Dashboard"
+      ],
       "included": [
         {
           "title": "Custom UI Design",
@@ -184,11 +200,13 @@
       "cadence": "one-time",
       "limitedOffer": true,
       "includedIntro": "Everything in the Basic Ecommerce Package, plus:",
+      "highlightTitles": [
+        "Customer Accounts & Order History",
+        "Discount Coupons & Promo Codes",
+        "Product Reviews & Ratings",
+        "Multiple Staff Logins with Permissions"
+      ],
       "included": [
-        {
-          "title": "Fully Custom Website Design",
-          "desc": "Unique layout and visual design built specifically for your brand, not adapted from a template."
-        },
         {
           "title": "Customer Accounts & Order History",
           "desc": "Customers can create an account, save addresses, and view past orders for faster repeat purchases."

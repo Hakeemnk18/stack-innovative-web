@@ -3,8 +3,11 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Code2, Zap, Globe } from 'lucide-react'
 import content from '../../data/content.json'
+import { buildWhatsAppUrl } from '../../lib/whatsapp'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+
+const CONSULTATION_WA_URL = buildWhatsAppUrl("Hi! I'd like to book a free consultation call to discuss my project.")
 
 const serviceBadges = [
   { label: 'Mobile Apps', color: '#61DAFB' },
@@ -90,15 +93,17 @@ export default function Hero() {
               transition={{ duration: 0.7, delay: 0.3, ease: EASE }}
               className="flex flex-wrap gap-3"
             >
-              <motion.button
-                onClick={() => handleCTA(content.hero.cta1.href)}
+              <motion.a
+                href={CONSULTATION_WA_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary text-base group"
                 whileHover={{ scale: 1.04, boxShadow: '0 10px 30px rgba(0,102,255,0.45)' }}
                 whileTap={{ scale: 0.97 }}
               >
                 {content.hero.cta1.label}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              </motion.a>
               <motion.button
                 onClick={() => handleCTA(content.hero.cta2.href)}
                 className="btn-ghost-white text-base"
