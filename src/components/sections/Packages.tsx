@@ -11,8 +11,8 @@ import { inViewProps } from '../../lib/motion'
 export default function Packages() {
   return (
     <section id="packages" className="py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto md:px-6">
-        <div className="px-6 md:px-0">
+      <div className="max-w-7xl mx-auto">
+        <div className="px-6">
           <SectionHeader
             badge={packages.badge}
             heading={packages.heading}

@@ -75,7 +75,7 @@ export default function PackagesPage() {
       </section>
 
       <section className="pb-24 lg:pb-32">
-        <div className="max-w-7xl mx-auto md:px-6">
+        <div className="max-w-7xl mx-auto">
           <PackageScroller items={packagesData.items} variant="detailed" />
         </div>
       </section>
