@@ -92,11 +92,10 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
       Let&apos;s Talk First
     </p>
   ) : (
-    <div className="flex items-baseline gap-2 mb-6">
+    <div className="mb-6">
       <span className="display-font font-black text-slate-900 text-4xl lg:text-5xl">
         {formatPrice(pkg.price!, pkg.currency!)}
       </span>
-      <span className="text-slate-400 text-sm font-medium">/ {pkg.cadence}</span>
     </div>
   )
 
