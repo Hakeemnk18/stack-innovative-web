@@ -12,13 +12,11 @@
       "currency": "INR",
       "cadence": "one-time",
       "popular": true,
-      "highlightTitles": [
-        "Multi-page portfolio website",
-        "Delivered in 7 days",
-        "Email & WhatsApp integration",
-        "SEO & GEO ready",
-        "Admin dashboard (CMS)",
-        "Google Analytics setup"
+      "cardHighlights": [
+        "Multi-page site, live in 7 days",
+        "SEO & AI-search (GEO) ready",
+        "Self-editable via CMS",
+        "WhatsApp, email & analytics built in"
       ],
       "included": [
         {
@@ -91,13 +89,11 @@
       "currency": "INR",
       "cadence": "one-time",
       "limitedOffer": true,
-      "highlightTitles": [
-        "Custom UI Design",
-        "Complete Online Store",
-        "Product Listing & Details Pages",
-        "Instant WhatsApp Order Alerts",
-        "Secure Online Payments",
-        "Admin Dashboard"
+      "cardHighlights": [
+        "Custom-designed online store",
+        "Product pages with variants & wishlist",
+        "Secure payments & WhatsApp order alerts",
+        "Admin dashboard for orders & products"
       ],
       "included": [
         {
@@ -200,11 +196,11 @@
       "cadence": "one-time",
       "limitedOffer": true,
       "includedIntro": "Everything in the Basic Ecommerce Package, plus:",
-      "highlightTitles": [
-        "Customer Accounts & Order History",
-        "Discount Coupons & Promo Codes",
-        "Product Reviews & Ratings",
-        "Multiple Staff Logins with Permissions"
+      "cardHighlights": [
+        "Customer accounts & order history",
+        "Coupons, reviews & abandoned cart recovery",
+        "Multiple staff logins with permissions",
+        "Per-module overviews, sales insights & blog"
       ],
       "included": [
         {
@@ -232,6 +228,10 @@
           "desc": "Goes beyond basic totals — see your best-selling products, revenue trends over time, and customer buying patterns."
         },
         {
+          "title": "Overview Page for Every Module",
+          "desc": "Beyond the main dashboard, each module — orders, products, customers, and more — gets its own overview page with the stats that matter specifically for it."
+        },
+        {
           "title": "Blog / Content Section",
           "desc": "Publish articles and updates that help you rank higher on Google over time."
         },
@@ -255,19 +255,10 @@
       "tagline": "Not sure which package fits, or need something none of them quite cover? Let's talk it through first — free of charge.",
       "cadence": "consultation",
       "custom": true,
-      "highlights": [
-        {
-          "title": "Free Consultation Call",
-          "desc": "Hop on a no-obligation call with us to talk through what you're building — it costs you nothing."
-        },
-        {
-          "title": "We Learn Your Priorities",
-          "desc": "We dig into what your business actually needs and what matters most to you before recommending anything."
-        },
-        {
-          "title": "A Package Built Around You",
-          "desc": "We tailor the scope and pricing to match your goals, with you involved at every step of the way."
-        }
+      "cardHighlights": [
+        "Free, no-obligation consultation",
+        "We learn your priorities first",
+        "Custom scope & pricing built around you"
       ],
       "cta": {
         "primaryLabel": "Book a Free Call",

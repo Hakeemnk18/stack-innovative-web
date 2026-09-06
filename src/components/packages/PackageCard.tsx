@@ -25,10 +25,9 @@ export interface PackageItem {
   limitedOffer?: boolean
   custom?: boolean
   includedIntro?: string
-  highlightTitles?: string[]
+  cardHighlights?: string[]
   included?: PackageFeature[]
   alsoIncluded?: PackageFeature[]
-  highlights?: PackageFeature[]
   note?: string
   cta: {
     primaryLabel: string
@@ -72,6 +71,22 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
     </>
   )
 
+  // Short, single-line points (no description) so the card's key features
+  // fit above the fold — the full breakdown lives on the package's own
+  // detail page.
+  const highlightList = (points: string[]) => (
+    <ul className="space-y-2.5 mb-2">
+      {points.map((point) => (
+        <li key={point} className="flex items-center gap-3">
+          <span className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+            <Check size={12} className="text-blue-600" strokeWidth={3} />
+          </span>
+          <span className="text-slate-800 text-sm font-medium">{point}</span>
+        </li>
+      ))}
+    </ul>
+  )
+
   const priceBlock = pkg.custom ? (
     <p className="display-font font-black text-slate-900 text-2xl lg:text-3xl mb-6">
       Let&apos;s Talk First
@@ -88,7 +103,6 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
   // Custom package: no separate details page, keep the direct dual-CTA card.
   if (pkg.custom) {
     const waUrl = buildWhatsAppUrl(pkg.cta.whatsappMessage)
-    const listItems = pkg.highlights ?? []
 
     return (
       <motion.div
@@ -105,19 +119,7 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
 
         {priceBlock}
 
-        <ul className="space-y-3 mb-2">
-          {listItems.map((item) => (
-            <li key={item.title} className="flex items-start gap-3">
-              <span className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                <Check size={12} className="text-blue-600" strokeWidth={3} />
-              </span>
-              <div>
-                <span className="text-slate-800 text-sm font-semibold">{item.title}</span>
-                <p className="text-slate-500 text-xs leading-relaxed mt-0.5">{item.desc}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
+        {highlightList(pkg.cardHighlights ?? [])}
 
         <div className="flex-1" />
 
@@ -140,11 +142,6 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
   }
 
   // Priced packages: a short summary card — full details live on their own page.
-  const allItems = pkg.included ?? []
-  const highlightItems = pkg.highlightTitles
-    ? allItems.filter((item) => pkg.highlightTitles!.includes(item.title))
-    : allItems
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 24 }}
@@ -172,19 +169,7 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         </p>
       )}
 
-      <ul className="space-y-3 mb-2">
-        {highlightItems.map((item) => (
-          <li key={item.title} className="flex items-start gap-3">
-            <span className="w-5 h-5 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Check size={12} className="text-blue-600" strokeWidth={3} />
-            </span>
-            <div>
-              <span className="text-slate-800 text-sm font-semibold">{item.title}</span>
-              <p className="text-slate-500 text-xs leading-relaxed mt-0.5">{item.desc}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {highlightList(pkg.cardHighlights ?? [])}
 
       <div className="flex-1" />
 

@@ -14,17 +14,43 @@ interface PackageScrollerProps {
 }
 
 export default function PackageScroller({ items, variant = 'detailed' }: PackageScrollerProps) {
-  // Cards stay a horizontal scroller at every breakpoint (home and /packages
-  // alike), and autoplay loops forward endlessly via a cloned second copy of
-  // the list: once the scroll position crosses into the clone range it snaps
-  // back by exactly one real-list-width — clones sit pixel-for-pixel where
-  // the real cards would continue, so the reset is visually seamless.
-  const renderItems = [...items, ...items]
+  // The full package list (/packages, "detailed") switches to a static grid
+  // on laptop-and-up, where all cards already fit without needing a
+  // scroller. The home-page teaser ("compact") stays a horizontal scroller
+  // at every breakpoint by design — it's a preview, not the full list.
+  const desktopGrid = variant === 'detailed'
+
+  // Below that breakpoint, autoplay loops forward endlessly via a cloned
+  // second copy of the list: once the scroll position crosses into the
+  // clone range it snaps back by exactly one real-list-width — clones sit
+  // pixel-for-pixel where the real cards would continue, so the reset is
+  // visually seamless. The clone set is only added once the real cards
+  // actually overflow the container — otherwise both copies would fit on
+  // screen at once and render as duplicates.
+  const [needsLoop, setNeedsLoop] = useState(false)
+  const renderItems = needsLoop ? [...items, ...items] : items
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
   const lastInteractionRef = useRef(0)
   const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container || items.length < 2) return
+
+    const checkOverflow = () => {
+      const first = cardRefs.current[0]
+      const lastReal = cardRefs.current[items.length - 1]
+      if (!first || !lastReal) return
+      const realContentWidth = lastReal.offsetLeft + lastReal.offsetWidth - first.offsetLeft
+      setNeedsLoop(realContentWidth > container.clientWidth)
+    }
+
+    checkOverflow()
+    window.addEventListener('resize', checkOverflow)
+    return () => window.removeEventListener('resize', checkOverflow)
+  }, [items.length, needsLoop])
 
   const markInteraction = () => {
     lastInteractionRef.current = Date.now()
@@ -114,49 +140,62 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
 
   return (
     <div>
-      {items.length > 1 && (
-        <div className="flex flex-col items-center gap-3 mb-4">
-          <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary">
-            <ArrowLeftRight size={13} />
-            Scroll to see all packages
-          </p>
-          <div className="flex items-center justify-center gap-2">
-            {items.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Go to package ${i + 1}`}
-                onClick={() => {
-                  markInteraction()
-                  scrollToIndex(i)
-                }}
-                className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeIndex === i ? 'w-6 bg-primary' : 'w-1.5 bg-slate-300'
-                }`}
-              />
-            ))}
+      <div className={desktopGrid ? 'lg:hidden' : ''}>
+        {items.length > 1 && (
+          <div className="flex flex-col items-center gap-3 mb-4">
+            <p className="flex items-center justify-center gap-1.5 text-xs font-semibold text-primary">
+              <ArrowLeftRight size={13} />
+              Scroll to see all packages
+            </p>
+            <div className="flex items-center justify-center gap-2">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Go to package ${i + 1}`}
+                  onClick={() => {
+                    markInteraction()
+                    scrollToIndex(i)
+                  }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    activeIndex === i ? 'w-6 bg-primary' : 'w-1.5 bg-slate-300'
+                  }`}
+                />
+              ))}
+            </div>
           </div>
+        )}
+
+        <div ref={scrollRef} className="flex items-start overflow-x-auto snap-x snap-mandatory gap-5 px-6 pb-4">
+          {renderItems.map((pkg, i) => {
+            const isClone = i >= items.length
+            return (
+              <div
+                key={`${pkg.id}-${i}`}
+                ref={(el) => {
+                  cardRefs.current[i] = el
+                }}
+                aria-hidden={isClone || undefined}
+                className="shrink-0 snap-center"
+                style={{ width: 'clamp(280px, 32vw, 380px)' }}
+              >
+                <PackageCard pkg={pkg} variant={variant} delay={isClone ? 0 : 0.05 + i * 0.1} />
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {desktopGrid && (
+        <div
+          className="hidden lg:grid gap-5 px-6"
+          style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))' }}
+        >
+          {items.map((pkg, i) => (
+            <PackageCard key={pkg.id} pkg={pkg} variant={variant} delay={0.05 + i * 0.1} />
+          ))}
         </div>
       )}
-
-      <div ref={scrollRef} className="flex items-start overflow-x-auto snap-x snap-mandatory gap-5 px-6 pb-4">
-        {renderItems.map((pkg, i) => {
-          const isClone = i >= items.length
-          return (
-            <div
-              key={`${pkg.id}-${i}`}
-              ref={(el) => {
-                cardRefs.current[i] = el
-              }}
-              aria-hidden={isClone || undefined}
-              className="shrink-0 snap-center"
-              style={{ width: 'clamp(280px, 32vw, 380px)' }}
-            >
-              <PackageCard pkg={pkg} variant={variant} delay={isClone ? 0 : 0.05 + i * 0.1} />
-            </div>
-          )
-        })}
-      </div>
     </div>
   )
 }
