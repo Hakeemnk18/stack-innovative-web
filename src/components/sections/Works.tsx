@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useCallback, useEffect } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, ChevronLeft, ChevronRight, ExternalLink } from 'lucide-react'
 import SectionHeader from '../ui/SectionHeader'
@@ -9,6 +10,7 @@ import { useAutoScroll } from '../../hooks/useAutoScroll'
 import content from '../../data/content.json'
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+const MotionImage = motion.create(Image)
 
 export default function Works() {
   
@@ -133,11 +135,12 @@ export default function Works() {
               style={{ flexShrink: 0, width: 'clamp(280px, 38vw, 400px)', scrollSnapAlign: 'center' }}
             >
               <div className="relative overflow-hidden" style={{ aspectRatio: '16/11' }}>
-                <motion.img
+                <MotionImage
                   src={work.image}
                   alt={work.title}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
+                  fill
+                  sizes="(max-width: 1024px) 90vw, 400px"
+                  className="object-cover"
                   whileHover={{ scale: 1.06 }}
                   transition={{ duration: 0.5, ease: EASE }}
                 />

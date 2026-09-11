@@ -11,6 +11,11 @@ const nextConfig = {
         hostname: 'placehold.co',
       },
     ],
+    // placehold.co serves SVG placeholders — allow Next's optimizer to
+    // process them, sandboxed per Next's documented recommendation.
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 }
 

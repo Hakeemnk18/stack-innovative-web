@@ -16,19 +16,26 @@ interface PackageScrollerProps {
 export default function PackageScroller({ items, variant = 'detailed' }: PackageScrollerProps) {
   // The full package list (/packages, "detailed") switches to a static grid
   // on laptop-and-up, where all cards already fit without needing a
-  // scroller. The home-page teaser ("compact") stays a horizontal scroller
-  // at every breakpoint by design — it's a preview, not the full list.
+  // scroller. Below that (including mobile), it's a horizontal swipe
+  // carousel — same card component/size as the grid, just one (mostly) full
+  // card at a time with a peek of the next. The home-page teaser ("compact")
+  // stays a horizontal scroller at every breakpoint by design — it's a
+  // preview, not the full list.
   const desktopGrid = variant === 'detailed'
 
-  // Below that breakpoint, autoplay loops forward endlessly via a cloned
+  // Only the home-page teaser ("compact") loops forever — via a cloned
   // second copy of the list: once the scroll position crosses into the
   // clone range it snaps back by exactly one real-list-width — clones sit
   // pixel-for-pixel where the real cards would continue, so the reset is
   // visually seamless. The clone set is only added once the real cards
   // actually overflow the container — otherwise both copies would fit on
   // screen at once and render as duplicates.
+  // The full package list (/packages, "detailed") is a finite swipe: exactly
+  // the real cards, no clones, no autoplay — the user is comparing packages,
+  // not watching a preview loop.
+  const loops = variant === 'compact'
   const [needsLoop, setNeedsLoop] = useState(false)
-  const renderItems = needsLoop ? [...items, ...items] : items
+  const renderItems = loops && needsLoop ? [...items, ...items] : items
 
   const scrollRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -37,7 +44,7 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
 
   useEffect(() => {
     const container = scrollRef.current
-    if (!container || items.length < 2) return
+    if (!loops || !container || items.length < 2) return
 
     const checkOverflow = () => {
       const first = cardRefs.current[0]
@@ -50,7 +57,7 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
     checkOverflow()
     window.addEventListener('resize', checkOverflow)
     return () => window.removeEventListener('resize', checkOverflow)
-  }, [items.length, needsLoop])
+  }, [loops, items.length, needsLoop])
 
   const markInteraction = () => {
     lastInteractionRef.current = Date.now()
@@ -101,10 +108,11 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
   }, [items.length])
 
   // Auto-advance through the cards, pausing while the user is interacting
-  // and while the row is scrolled out of view.
+  // and while the row is scrolled out of view. Only for the looping teaser —
+  // the full package list is user-driven only.
   useEffect(() => {
     const container = scrollRef.current
-    if (!container || items.length < 2) return
+    if (!loops || !container || items.length < 2) return
     if (typeof window === 'undefined') return
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
@@ -136,7 +144,7 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
       container.removeEventListener('pointerdown', markInteraction)
       container.removeEventListener('touchstart', markInteraction)
     }
-  }, [items.length])
+  }, [loops, items.length])
 
   return (
     <div>
@@ -166,7 +174,7 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
           </div>
         )}
 
-        <div ref={scrollRef} className="flex items-start overflow-x-auto snap-x snap-mandatory gap-5 px-6 pb-4">
+        <div ref={scrollRef} className="flex items-stretch overflow-x-auto snap-x snap-mandatory gap-5 px-6 pb-4">
           {renderItems.map((pkg, i) => {
             const isClone = i >= items.length
             return (
@@ -177,7 +185,7 @@ export default function PackageScroller({ items, variant = 'detailed' }: Package
                 }}
                 aria-hidden={isClone || undefined}
                 className="shrink-0 snap-center"
-                style={{ width: 'clamp(280px, 32vw, 380px)' }}
+                style={{ width: 'min(calc(100vw - 64px), 400px)' }}
               >
                 <PackageCard pkg={pkg} variant={variant} delay={isClone ? 0 : 0.05 + i * 0.1} />
               </div>

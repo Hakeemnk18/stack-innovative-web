@@ -109,7 +109,7 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0 }}
         transition={{ duration: 0.6, delay, ease: EASE }}
-        className={`card-base shadow-card flex flex-col relative w-full max-w-md mx-auto ${paddingClasses}`}
+        className={`card-base shadow-card flex flex-col relative w-full h-full max-w-md mx-auto ${paddingClasses}`}
       >
         {badges}
 
@@ -147,7 +147,7 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0 }}
       transition={{ duration: 0.6, delay, ease: EASE }}
-      className={`card-base shadow-card flex flex-col relative w-full max-w-md mx-auto group ${paddingClasses}`}
+      className={`card-base shadow-card flex flex-col relative w-full h-full max-w-md mx-auto group ${paddingClasses}`}
     >
       <Link
         href={`/packages/${pkg.slug}`}

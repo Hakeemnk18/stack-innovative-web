@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
 import { Menu, X, ArrowRight } from 'lucide-react'
@@ -81,10 +82,12 @@ export default function Navbar() {
                     animate={{ boxShadow: ['0 0 0px rgba(0,102,255,0)', '0 0 18px rgba(0,102,255,0.5)', '0 0 0px rgba(0,102,255,0)'] }}
                     transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                   />
-                  <img
+                  <Image
                     src={content.brand.logo}
                     alt={content.brand.name}
-                    className="relative w-full h-full rounded-xl object-contain"
+                    fill
+                    sizes="36px"
+                    className="relative rounded-xl object-contain"
                   />
                 </div>
                 <div className="hidden sm:block">

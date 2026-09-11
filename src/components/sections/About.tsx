@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { Zap, Lock, RefreshCw, HeartHandshake, ArrowRight, CheckCircle2 } from 'lucide-react'
 import { inViewProps, inViewLeft, inViewRight } from '../../lib/motion'
@@ -27,11 +28,12 @@ export default function About() {
           {/* Left: Image */}
           <motion.div {...inViewLeft(0)} className="relative">
             <div className="relative rounded-3xl overflow-hidden aspect-[4/5] max-w-md mx-auto lg:mx-0">
-              <img
+              <Image
                 src={content.about.image}
                 alt="Stack Innovative"
-                className="w-full h-full object-cover"
-                loading="lazy"
+                fill
+                sizes="(max-width: 1024px) 100vw, 448px"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
 

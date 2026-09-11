@@ -8,19 +8,19 @@ import faqData from '../../data/faq.json'
 export const metadata: Metadata = {
   title: 'Packages & Pricing',
   description:
-    'Simple, transparent website packages from Stack Innovative. The Portfolio Website Package (₹4,999) includes a multi-page site, free hosting, SEO & GEO setup, a CMS, and more — no hidden costs.',
+    'Simple, transparent website packages from Stack Innovative — Portfolio site from ₹4,999, with hosting, SEO, CMS & more. No hidden costs.',
   alternates: { canonical: '/packages' },
   openGraph: {
     url: '/packages',
     title: 'Packages & Pricing | Stack Innovative',
     description:
-      'Simple, transparent website packages from Stack Innovative. The Portfolio Website Package (₹4,999) includes a multi-page site, free hosting, SEO & GEO setup, a CMS, and more.',
+      'Simple, transparent website packages from Stack Innovative — Portfolio site from ₹4,999, with hosting, SEO, CMS & more. No hidden costs.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Packages & Pricing | Stack Innovative',
     description:
-      'Simple, transparent website packages from Stack Innovative. The Portfolio Website Package (₹4,999) includes a multi-page site, free hosting, SEO & GEO setup, a CMS, and more.',
+      'Simple, transparent website packages from Stack Innovative — Portfolio site from ₹4,999, with hosting, SEO, CMS & more. No hidden costs.',
   },
 }
 
@@ -35,7 +35,7 @@ const productJsonLd = packagesData.items.filter((pkg) => !pkg.custom).map((pkg) 
     price: pkg.price,
     priceCurrency: pkg.currency,
     availability: 'https://schema.org/InStock',
-    url: 'https://stackinnovative.com/packages',
+    url: 'https://www.stackinnovative.in/packages',
   },
 }))
 

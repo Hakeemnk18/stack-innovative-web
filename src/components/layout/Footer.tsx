@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
@@ -79,11 +80,13 @@ export default function Footer() {
               className="inline-flex items-center gap-2.5 group"
               whileHover={{ scale: 1.02 }}
             >
-              <div className="w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
-                <img
+              <div className="relative w-10 h-10 rounded-xl overflow-hidden flex-shrink-0">
+                <Image
                   src={content.brand.logo}
                   alt={content.brand.name}
-                  className="w-full h-full object-contain"
+                  fill
+                  sizes="40px"
+                  className="object-contain"
                 />
               </div>
               <div>
