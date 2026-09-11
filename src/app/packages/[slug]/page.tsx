@@ -59,7 +59,7 @@ export default async function PackageDetailsPage({ params }: PageProps) {
       price: pkg.price,
       priceCurrency: pkg.currency,
       availability: 'https://schema.org/InStock',
-      url: `https://stackinnovative.com/packages/${pkg.slug}`,
+      url: `https://www.stackinnovative.in/packages/${pkg.slug}`,
     },
   }
 

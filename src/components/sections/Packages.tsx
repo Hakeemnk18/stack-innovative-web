@@ -20,7 +20,7 @@ export default function Packages() {
           />
         </div>
 
-        <PackageScroller items={packages.items} variant="compact" />
+        <PackageScroller items={packages.items} variant="detailed" />
 
         <motion.div {...inViewProps(0.15)} className="text-center mt-12">
           <Link href="/packages" className="btn-secondary group">

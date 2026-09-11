@@ -1,7 +1,7 @@
 import type { MetadataRoute } from 'next'
 import packagesData from '../data/packages.json'
 
-const SITE_URL = 'https://stackinnovative.com'
+const SITE_URL = 'https://www.stackinnovative.in'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const packagePages: MetadataRoute.Sitemap = packagesData.items

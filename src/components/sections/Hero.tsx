@@ -64,16 +64,17 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-              className="space-y-1"
             >
-              <h1 className="display-font font-black text-white leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
-                {content.hero.headline}
-              </h1>
-              <h1 className="display-font font-black leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl gradient-text">
-                {content.hero.headlineAccent}
-              </h1>
-              <h1 className="display-font font-black text-white/40 leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
-                {content.hero.headline2}
+              <h1 className="space-y-1">
+                <span className="block display-font font-black text-white leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
+                  {content.hero.headline}
+                </span>
+                <span className="block display-font font-black leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl gradient-text">
+                  {content.hero.headlineAccent}
+                </span>
+                <span className="block display-font font-black text-white/40 leading-none text-4xl sm:text-5xl md:text-6xl xl:text-7xl">
+                  {content.hero.headline2}
+                </span>
               </h1>
             </motion.div>
 
@@ -193,7 +194,7 @@ export default function Hero() {
                 <div className="browser-dot" style={{ background: '#EF4444' }} />
                 <div className="browser-dot" style={{ background: '#F59E0B' }} />
                 <div className="browser-dot" style={{ background: '#10B981' }} />
-                <div className="browser-url">stackinnovative.com/project</div>
+                <div className="browser-url">stackinnovative.in/project</div>
                 <div className="ml-auto flex items-center gap-1.5">
                   <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
                   <span style={{ fontSize: '10px', color: 'rgba(255,255,255,0.3)' }}>Live</span>

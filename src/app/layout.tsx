@@ -23,7 +23,7 @@ const jakarta = Plus_Jakarta_Sans({
   display: 'swap',
 })
 
-const SITE_URL = 'https://stackinnovative.com'
+const SITE_URL = 'https://www.stackinnovative.in'
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: '%s | Stack Innovative',
   },
   description:
-    'Stack Innovative is a professional web & app development agency based in Calicut, Kerala, serving Kozhikode district including Balussery, Nanmanda, Kakkur, Narikkuni, Kakkodi, and Kunnamangalam. We build React, Next.js, React Native, and full-stack solutions for startups and businesses worldwide.',
+    'Stack Innovative — web & app development agency in Calicut, Kerala, serving Kozhikode district. React, Next.js & full-stack solutions for startups worldwide.',
   keywords: [
     'website design calicut',
     'website designing kozhikode',
@@ -73,7 +73,6 @@ export const metadata: Metadata = {
     title: 'Stack Innovative | Web & App Development — Calicut, Kerala',
     description:
       'Professional web & app development agency in Calicut, Kerala. React, Next.js, React Native. Serving clients worldwide.',
-    images: [{ url: '/og-image.png' }],
     locale: 'en_IN',
     siteName: 'Stack Innovative',
   },
@@ -82,7 +81,6 @@ export const metadata: Metadata = {
     title: 'Stack Innovative | Web & App Development — Calicut, Kerala',
     description:
       'Professional web & app development agency in Calicut, Kerala. React, Next.js, React Native. Serving clients worldwide.',
-    images: ['/og-image.png'],
   },
   other: {
     'geo.region': 'IN-KL',
