@@ -221,6 +221,20 @@
           "Tailwind CSS"
         ],
         "href": "https://www.bigstoremobiles.com/"
+      },
+      {
+        "id": "project-6",
+        "title": "Toteside",
+        "category": "Portfolio Website",
+        "description": "Elegant brand website for a custom & bulk tote bag studio, featuring a warm editorial design and clear paths for personalised and bulk enquiries.",
+        "image": "/works/toteside.png",
+        "gradient": "from-amber-700 to-stone-900",
+        "tags": [
+          "React",
+          "Tailwind CSS",
+          "Framer Motion"
+        ],
+        "href": "https://toteside.in/"
       }
 
     ]
