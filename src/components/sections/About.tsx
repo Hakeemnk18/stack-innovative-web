@@ -32,7 +32,7 @@ export default function About() {
                 src={content.about.image}
                 alt="Stack Innovative"
                 fill
-                sizes="(max-width: 1024px) 100vw, 448px"
+                sizes="(max-width: 448px) 100vw, 448px"
                 className="object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />

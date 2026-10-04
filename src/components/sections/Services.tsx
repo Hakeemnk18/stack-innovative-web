@@ -73,6 +73,7 @@ export default function Services() {
         <button
           onClick={() => go('prev')}
           disabled={activeIndex === 0}
+          aria-label="Previous service"
           className="absolute left-3 lg:left-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-25 disabled:pointer-events-none"
         >
           <ChevronLeft size={18} />
@@ -81,6 +82,7 @@ export default function Services() {
         <button
           onClick={() => go('next')}
           disabled={activeIndex === items.length - 1}
+          aria-label="Next service"
           className="absolute right-3 lg:right-6 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white border border-slate-200 shadow-lg flex items-center justify-center text-slate-500 hover:text-blue-600 hover:border-blue-400 transition-all disabled:opacity-25 disabled:pointer-events-none"
         >
           <ChevronRight size={18} />

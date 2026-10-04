@@ -122,6 +122,7 @@ export default function Footer() {
                   />
                   <motion.button
                     type="submit"
+                    aria-label="Subscribe to newsletter"
                     className="w-10 h-10 bg-blue-600 hover:bg-blue-500 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors"
                     whileHover={{ scale: 1.08 }}
                     whileTap={{ scale: 0.94 }}

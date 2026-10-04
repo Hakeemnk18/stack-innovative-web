@@ -265,35 +265,35 @@ export default function Contact() {
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="form-label">{contact.formLabels.name}</label>
-                      <input type="text" name="name" value={form.name} onChange={handleChange}
+                      <label htmlFor="contact-name" className="form-label">{contact.formLabels.name}</label>
+                      <input id="contact-name" type="text" name="name" value={form.name} onChange={handleChange}
                         placeholder={contact.formLabels.namePlaceholder} className="form-input" required />
                     </div>
                     <div>
-                      <label className="form-label">{contact.formLabels.email}</label>
-                      <input type="email" name="email" value={form.email} onChange={handleChange}
+                      <label htmlFor="contact-email" className="form-label">{contact.formLabels.email}</label>
+                      <input id="contact-email" type="email" name="email" value={form.email} onChange={handleChange}
                         placeholder={contact.formLabels.emailPlaceholder} className="form-input" required />
                     </div>
                   </div>
 
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="form-label">{contact.formLabels.service}</label>
-                      <select name="service" value={form.service} onChange={handleChange} className="form-input" required>
+                      <label htmlFor="contact-service" className="form-label">{contact.formLabels.service}</label>
+                      <select id="contact-service" name="service" value={form.service} onChange={handleChange} className="form-input" required>
                         <option value="">Select a service</option>
                         {contact.services.map((s) => <option key={s} value={s}>{s}</option>)}
                       </select>
                     </div>
                     <div>
-                      <label className="form-label">{contact.formLabels.phone}</label>
-                      <input type="tel" name="phone" value={form.phone} onChange={handleChange}
+                      <label htmlFor="contact-phone" className="form-label">{contact.formLabels.phone}</label>
+                      <input id="contact-phone" type="tel" name="phone" value={form.phone} onChange={handleChange}
                         placeholder={contact.formLabels.phonePlaceholder} className="form-input" />
                     </div>
                   </div>
 
                   <div>
-                    <label className="form-label">{contact.formLabels.message}</label>
-                    <textarea name="message" value={form.message} onChange={handleChange}
+                    <label htmlFor="contact-message" className="form-label">{contact.formLabels.message}</label>
+                    <textarea id="contact-message" name="message" value={form.message} onChange={handleChange}
                       placeholder={contact.formLabels.messagePlaceholder} rows={5}
                       className="form-input resize-none" required />
                   </div>
