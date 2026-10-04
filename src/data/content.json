@@ -224,17 +224,32 @@
       },
       {
         "id": "project-6",
-        "title": "Toteside",
+        "title": "Skandiora",
         "category": "Portfolio Website",
-        "description": "Elegant brand website for a custom & bulk tote bag studio, featuring a warm editorial design and clear paths for personalised and bulk enquiries.",
-        "image": "/works/toteside.png",
-        "gradient": "from-amber-700 to-stone-900",
+        "description": "Portfolio website for a study-abroad consultancy, showcasing services and destinations with a clean, modern design.",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1791097662/Screenshot_2026-10-04_123444_kvu2jm.png",
+        "gradient": "from-indigo-600 to-violet-900",
         "tags": [
-          "React",
+          "Next.js",
           "Tailwind CSS",
           "Framer Motion"
         ],
-        "href": "https://toteside.in/"
+        "href": "https://skandiora.in/"
+      },
+      {
+        "id": "project-7",
+        "title": "Toteside",
+        "category": "Portfolio Website",
+        "description": "Portfolio business website for a tote bag brand, built with Sanity CMS for easy content management.",
+        "image": "https://res.cloudinary.com/ddblal31l/image/upload/v1791097993/Screenshot_2026-10-04_124241_gxouse.png",
+        "gradient": "from-amber-600 to-orange-900",
+        "tags": [
+          "Next.js",
+          "Sanity",
+          "Tailwind CSS",
+          "Framer Motion"
+        ],
+        "href": "https://www.toteside.in/"
       }
 
     ]
@@ -328,7 +343,7 @@
     "badge": "About Us",
     "heading": "Builders at Heart",
     "headingAccent": "Craftsmen by Nature",
-    "description": "Stack Innovative is a boutique web & app development studio that turns bold ideas into powerful digital products. We combine deep technical expertise with strategic thinking to deliver solutions that don't just look great — they perform.",
+    "description": "Stack Innovative is a specialized web & app development studio that turns bold ideas into powerful digital products. We combine deep technical expertise with strategic thinking to deliver solutions that don't just look great — they perform.",
     "description2": "From startups launching their MVP to established businesses scaling their platforms, we partner with clients who are serious about their digital presence and growth.",
     "image": "https://placehold.co/600x700/040714/0066FF?text=Stack+Innovative+Team",
     "highlights": [
@@ -403,6 +418,15 @@
     "color": "#EF4444",
     "rating": 5,
     "text": "Stack Innovative transformed our idea into a polished platform with a clean interface and smooth user flow. Their speed, creativity, and technical execution were genuinely impressive."
+  },
+  {
+    "id": "t7",
+    "name": "Ashwin Nair",
+    "role": "Founder, Skandiora Immigration",
+    "initials": "AN",
+    "color": "#10B981",
+    "rating": 5,
+    "text": "Really happy with the website created by Stack Innovative (Skandiora Immigration). The team understood what I needed and delivered a clean, professional website exactly as I wanted. Very responsive and easy to work with. Highly recommended!"
   }
 ]
   },

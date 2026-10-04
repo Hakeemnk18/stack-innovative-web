@@ -151,6 +151,8 @@ export default function Navbar() {
 
                 <motion.button
                   onClick={() => setMobileOpen(!mobileOpen)}
+                  aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={mobileOpen}
                   className="lg:hidden w-9 h-9 flex items-center justify-center text-white/60 hover:text-white hover:bg-white/8 rounded-full transition-colors"
                   whileTap={{ scale: 0.9 }}
                 >
