@@ -13,21 +13,46 @@ export interface PackageFeature {
   desc: string
 }
 
+export interface PackageQuickFact {
+  value: string
+  label: string
+}
+
+export interface PackageEditPanel {
+  selfEdit: string[]
+  weEdit: string[]
+}
+
+export interface PackageHowItWorksStep {
+  title: string
+  desc: string
+}
+
 export interface PackageItem {
   id: string
   slug: string
+  category?: string
   name: string
   tagline: string
   price?: number
   currency?: string
+  worthValue?: number
   cadence: string
   popular?: boolean
   limitedOffer?: boolean
+  badgeLabel?: string
   custom?: boolean
   includedIntro?: string
   cardHighlights?: string[]
   included?: PackageFeature[]
+  alsoIncludedHeading?: string
   alsoIncluded?: PackageFeature[]
+  quickFacts?: PackageQuickFact[]
+  pagesCaption?: string
+  editPanel?: PackageEditPanel
+  editPanelNote?: string
+  howItWorks?: PackageHowItWorksStep[]
+  pdfUrl?: string
   note?: string
   cta: {
     primaryLabel: string
@@ -51,14 +76,14 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
       {pkg.popular && (
         <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 mb-5 bg-gradient-primary rounded-full text-white text-xs font-semibold shadow-lg">
           <Sparkles size={12} />
-          Most Popular
+          {pkg.badgeLabel ?? 'Most Popular'}
         </div>
       )}
 
       {pkg.limitedOffer && (
         <div className="inline-flex items-center gap-1.5 self-start px-3 py-1 mb-5 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full text-white text-xs font-semibold shadow-lg">
           <Timer size={12} />
-          Limited Time Offer
+          {pkg.badgeLabel ?? 'Limited Time Offer'}
         </div>
       )}
 
@@ -96,6 +121,11 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
       <span className="display-font font-black text-slate-900 text-4xl lg:text-5xl">
         {formatPrice(pkg.price!, pkg.currency!)}
       </span>
+      {pkg.worthValue && (
+        <div className="text-slate-400 text-xs font-medium mt-1">
+          worth {formatPrice(pkg.worthValue, pkg.currency!)}
+        </div>
+      )}
     </div>
   )
 
@@ -111,10 +141,10 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         transition={{ duration: 0.6, delay, ease: EASE }}
         className={`card-base shadow-card flex flex-col relative w-full h-full max-w-md mx-auto ${paddingClasses}`}
       >
-        {badges}
+        <div className="min-h-[44px]">{badges}</div>
 
-        <h3 className="display-font font-bold text-slate-900 text-2xl mb-2">{pkg.name}</h3>
-        <p className="text-slate-500 text-sm leading-relaxed mb-6">{pkg.tagline}</p>
+        <h3 className="display-font font-bold text-slate-900 text-2xl mb-2 min-h-[4rem]">{pkg.name}</h3>
+        <p className="text-slate-500 text-sm leading-relaxed mb-6 min-h-[6.5em]">{pkg.tagline}</p>
 
         {priceBlock}
 
@@ -155,10 +185,10 @@ export default function PackageCard({ pkg, variant = 'detailed', delay = 0 }: Pa
         aria-label={`See full details for ${pkg.name}`}
       />
 
-      {badges}
+      <div className="min-h-[44px]">{badges}</div>
 
-      <h3 className="display-font font-bold text-slate-900 text-2xl mb-2">{pkg.name}</h3>
-      <p className="text-slate-500 text-sm leading-relaxed mb-6">{pkg.tagline}</p>
+      <h3 className="display-font font-bold text-slate-900 text-2xl mb-2 min-h-[4rem]">{pkg.name}</h3>
+      <p className="text-slate-500 text-sm leading-relaxed mb-6 min-h-[6.5em]">{pkg.tagline}</p>
 
       {priceBlock}
 

@@ -1,9 +1,12 @@
 import type { Metadata } from 'next'
 import SectionHeader from '../../components/ui/SectionHeader'
-import PackageScroller from '../../components/packages/PackageScroller'
+import PackagesTabbed from '../../components/packages/PackagesTabbed'
 import PackagesFAQ from '../../components/packages/PackagesFAQ'
+import type { PackageItem } from '../../components/packages/PackageCard'
 import packagesData from '../../data/packages.json'
 import faqData from '../../data/faq.json'
+
+const packageItems = packagesData.items as PackageItem[]
 
 export const metadata: Metadata = {
   title: 'Packages & Pricing',
@@ -76,7 +79,7 @@ export default function PackagesPage() {
 
       <section className="pb-24 lg:pb-32">
         <div className="max-w-7xl mx-auto">
-          <PackageScroller items={packagesData.items} variant="detailed" />
+          <PackagesTabbed items={packageItems} categories={packagesData.categories} />
         </div>
       </section>
 
