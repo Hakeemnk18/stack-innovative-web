@@ -2,87 +2,444 @@
   "badge": "Packages",
   "heading": "Simple, Transparent Pricing",
   "subheading": "One flat price. Everything you need to go live — nothing you don't.",
+  "categories": [
+    { "id": "portfolio", "label": "Portfolio" },
+    { "id": "ecommerce", "label": "Ecommerce" }
+  ],
+  "pagesIncluded": [
+    {
+      "icon": "Home",
+      "title": "Home",
+      "desc": "Your first impression: name, photo, best work, services, client feedback and a clear contact button."
+    },
+    {
+      "icon": "User",
+      "title": "About",
+      "desc": "Your story, photo, skills and experience, with an easy button for visitors to contact you."
+    },
+    {
+      "icon": "LayoutGrid",
+      "title": "Projects",
+      "desc": "All your work in one place, with individual detail pages for up to 8 projects."
+    },
+    {
+      "icon": "Mail",
+      "title": "Contact",
+      "desc": "A contact form, WhatsApp button, contact details and social media links."
+    }
+  ],
+  "addOns": {
+    "heading": "Optional Add-Ons",
+    "subheading": "Already included in your chosen package? It's free. Anything beyond that is available here, à la carte.",
+    "items": [
+      {
+        "id": "addon-faq",
+        "name": "FAQ Page",
+        "desc": "Answers to common questions. Up to 10 at launch.",
+        "price": 499
+      },
+      {
+        "id": "addon-service-page",
+        "name": "Extra Service Page",
+        "desc": "One additional page for a service you offer.",
+        "price": 499,
+        "unit": "each"
+      },
+      {
+        "id": "addon-blog",
+        "name": "Blog",
+        "desc": "Write and publish your own articles.",
+        "price": 999
+      },
+      {
+        "id": "addon-content-editing",
+        "name": "Full Content Editing",
+        "desc": "Edit all page text and sections yourself.",
+        "price": 999
+      },
+      {
+        "id": "addon-sheet",
+        "name": "Contact Form to Google Sheet",
+        "desc": "Every website enquiry is saved automatically.",
+        "price": 499
+      },
+      {
+        "id": "addon-gbp",
+        "name": "Google Business Profile Setup",
+        "desc": "We create and set up your business listing on Google.",
+        "price": 1499
+      },
+      {
+        "id": "addon-social",
+        "name": "Social Media Business Setup",
+        "desc": "Facebook, Instagram, LinkedIn & WhatsApp Business — all 4 profiles. ₹799 each if purchased separately.",
+        "price": 1999
+      },
+      {
+        "id": "addon-video",
+        "name": "Video or Showreel Section",
+        "desc": "Show a video from YouTube or Vimeo.",
+        "price": 299
+      },
+      {
+        "id": "addon-newsletter",
+        "name": "Newsletter Signup Section",
+        "desc": "Collect visitor emails in a Google Sheet. Sending emails is not included.",
+        "price": 299
+      },
+      {
+        "id": "addon-gallery",
+        "name": "Photo Gallery Section",
+        "desc": "Show up to 12 photos.",
+        "price": 299
+      }
+    ],
+    "bundleNote": "Want the video, newsletter signup, and photo gallery sections together? Get all 3 for ₹799 instead of ₹897."
+  },
   "items": [
     {
-      "id": "portfolio-website",
+      "id": "starter-website",
       "slug": "portfolio-website-package",
-      "name": "Portfolio Website Package",
-      "tagline": "Get a complete, professional portfolio website — live, launched, and ready to share. No templates that look like everyone else's. No confusing tech to manage.",
+      "category": "portfolio",
+      "name": "Starter Website Package",
+      "tagline": "A professional website that builds trust and helps you receive more enquiries.",
       "price": 4999,
       "currency": "INR",
       "cadence": "one-time",
       "popular": true,
+      "badgeLabel": "Best Value",
+      "quickFacts": [
+        { "value": "7 days", "label": "delivery" },
+        { "value": "4 main pages", "label": "+ project detail pages" },
+        { "value": "Free", "label": "secure hosting" },
+        { "value": "7 days", "label": "free bug fixes" }
+      ],
+      "pagesCaption": "Includes 4 main pages and individual detail pages for up to 8 projects. Extra pages and sections are available as add-ons.",
       "cardHighlights": [
         "Multi-page site, live in 7 days",
-        "SEO & AI-search (GEO) ready",
-        "Self-editable via CMS",
-        "WhatsApp, email & analytics built in"
+        "Google & AI-search (GEO) ready",
+        "Self-editable, no coding needed",
+        "WhatsApp, email & visitor tracking built in"
       ],
       "included": [
         {
-          "title": "Multi-page portfolio website",
-          "desc": "Built to show your work the right way"
+          "title": "Email & WhatsApp Enquiries",
+          "desc": "Visitors can reach you directly through a contact form, email, and WhatsApp — no middleman."
         },
         {
-          "title": "Delivered in 7 days",
-          "desc": "Live and launched within a week of kickoff, not months later"
+          "title": "Google & AI Search Ready",
+          "desc": "Built to get found on Google and show up correctly when people search using AI tools."
         },
         {
-          "title": "Email & WhatsApp integration",
-          "desc": "Visitors can reach you directly, no middleman"
+          "title": "Visitor Tracking",
+          "desc": "See exactly who's visiting your site, how many visits you get, and where your traffic comes from."
         },
         {
-          "title": "SEO & GEO ready",
-          "desc": "Built to get found on Google and show up correctly when people search using AI tools"
+          "title": "Fast & Mobile-Friendly",
+          "desc": "Loads quickly and works smoothly on every screen size, from phones to desktops."
         },
         {
-          "title": "Admin dashboard (CMS)",
-          "desc": "Update your own content anytime, no coding needed"
+          "title": "Up to 8 Projects, 5 Images Each",
+          "desc": "Showcase your work with individual detail pages, each holding up to 5 images."
         },
         {
-          "title": "Google Analytics setup",
-          "desc": "See exactly who's visiting your site and where they come from"
+          "title": "5 Testimonials at Launch",
+          "desc": "Launch with real client feedback already in place to build trust with new visitors."
         },
         {
-          "title": "Performance tested",
-          "desc": "Fast loading, no lag, works smoothly on any device"
+          "title": "2 Rounds of Design Changes",
+          "desc": "Two rounds of revisions included before launch, so the final result matches what you want."
         },
         {
-          "title": "Initial content setup",
-          "desc": "We help you get your first version live with your content in place"
+          "title": "Free SSL Certificate",
+          "desc": "The secure padlock icon that protects visitor data and builds trust."
+        },
+        {
+          "title": "Free Hosting Included",
+          "desc": "Your site stays live on our platform — no separate hosting bill from us."
+        },
+        {
+          "title": "Live Walkthrough Call",
+          "desc": "We personally show you how to manage and update your own site."
+        },
+        {
+          "title": "7 Days of Free Bug Fixes",
+          "desc": "Any issues after launch are fixed free of charge for a full week."
+        },
+        {
+          "title": "Clear Pricing, No Surprises",
+          "desc": "One flat price covers everything listed here — nothing hidden, nothing added later without your sign-off."
         }
       ],
-      "alsoIncluded": [
-        {
-          "title": "Free hosting included",
-          "desc": "Your site stays live on our platform — no hosting bill from us"
-        },
-        {
-          "title": "Free SSL security",
-          "desc": "The padlock icon that builds trust with visitors"
-        },
-        {
-          "title": "Mobile-friendly design",
-          "desc": "Works smoothly on every screen size"
-        },
-        {
-          "title": "A live walkthrough call",
-          "desc": "We personally show you how to manage your own site"
-        },
-        {
-          "title": "7 days of free bug fixes",
-          "desc": "After launch, we've got you covered"
-        }
+      "editPanel": {
+        "selfEdit": [
+          "Projects and project pages",
+          "Testimonials and services",
+          "Contact details and social links",
+          "Site name, logo, photo and tagline"
+        ],
+        "weEdit": [
+          "Other page text",
+          "Layout and design",
+          "New pages or sections"
+        ]
+      },
+      "howItWorks": [
+        { "title": "Message us", "desc": "Tell us about your work" },
+        { "title": "We plan", "desc": "You share your content and details" },
+        { "title": "We build", "desc": "Your website is ready in 7 days" },
+        { "title": "You go live", "desc": "Walkthrough call and launch" }
       ],
+      "alsoIncluded": [],
+      "pdfUrl": "/packages/starter-4999-package.pdf",
       "cta": {
         "primaryLabel": "Get This Package",
         "secondaryLabel": "Ask on WhatsApp",
-        "whatsappMessage": "Hi! I'm interested in the Portfolio Website Package (₹4,999). Can you share more details?"
+        "whatsappMessage": "Hi! I'm interested in the Starter Website Package (₹4,999). Can you share more details?"
+      }
+    },
+    {
+      "id": "growth-website",
+      "slug": "growth-website-package",
+      "category": "portfolio",
+      "name": "Growth Website Package",
+      "tagline": "A stronger online presence with Google visibility and organised enquiries.",
+      "price": 7499,
+      "currency": "INR",
+      "cadence": "one-time",
+      "worthValue": 7995,
+      "quickFacts": [
+        { "value": "7-9 days", "label": "delivery" },
+        { "value": "6 main pages", "label": "+ project detail pages" },
+        { "value": "Google-ready", "label": "business profile setup" },
+        { "value": "7 days", "label": "free bug fixes" }
+      ],
+      "pagesCaption": "Includes Home, About, Projects and Contact, plus an FAQ page, one dedicated service page, and individual detail pages for up to 8 projects.",
+      "cardHighlights": [
+        "Everything in Starter",
+        "FAQ page & 1 dedicated service page",
+        "Enquiries saved to Google Sheet automatically",
+        "Google Business Profile setup"
+      ],
+      "included": [
+        {
+          "title": "Email & WhatsApp Enquiries",
+          "desc": "Visitors can reach you directly through a contact form, email, and WhatsApp — no middleman."
+        },
+        {
+          "title": "Google & AI Search Ready",
+          "desc": "Built to get found on Google and show up correctly when people search using AI tools."
+        },
+        {
+          "title": "Visitor Tracking",
+          "desc": "See exactly who's visiting your site, how many visits you get, and where your traffic comes from."
+        },
+        {
+          "title": "Fast & Mobile-Friendly",
+          "desc": "Loads quickly and works smoothly on every screen size, from phones to desktops."
+        },
+        {
+          "title": "Up to 8 Projects, 5 Images Each",
+          "desc": "Showcase your work with individual detail pages, each holding up to 5 images."
+        },
+        {
+          "title": "5 Testimonials at Launch",
+          "desc": "Launch with real client feedback already in place to build trust with new visitors."
+        },
+        {
+          "title": "2 Rounds of Design Changes",
+          "desc": "Two rounds of revisions included before launch, so the final result matches what you want."
+        },
+        {
+          "title": "Free SSL Certificate",
+          "desc": "The secure padlock icon that protects visitor data and builds trust."
+        },
+        {
+          "title": "Free Hosting Included",
+          "desc": "Your site stays live on our platform — no separate hosting bill from us."
+        },
+        {
+          "title": "Live Walkthrough Call",
+          "desc": "We personally show you how to manage and update your own site."
+        },
+        {
+          "title": "7 Days of Free Bug Fixes",
+          "desc": "Any issues after launch are fixed free of charge for a full week."
+        },
+        {
+          "title": "Clear Pricing, No Surprises",
+          "desc": "One flat price covers everything listed here — nothing hidden, nothing added later without your sign-off."
+        }
+      ],
+      "alsoIncludedHeading": "Growth Upgrades Included",
+      "alsoIncluded": [
+        {
+          "title": "FAQ Page",
+          "desc": "Answer up to 10 common questions before visitors even have to ask."
+        },
+        {
+          "title": "1 Extra Service Page",
+          "desc": "Explain one important service you offer in its own dedicated page."
+        },
+        {
+          "title": "Google Sheet Connection",
+          "desc": "Every form enquiry is saved automatically — nothing to miss in your inbox."
+        },
+        {
+          "title": "Google Business Profile Setup",
+          "desc": "Set up for Google Search and Maps, so local customers can find you."
+        }
+      ],
+      "editPanel": {
+        "selfEdit": [
+          "Projects and project pages",
+          "Testimonials and services",
+          "Contact details and social links",
+          "Site name, logo, photo and tagline"
+        ],
+        "weEdit": [
+          "Other page text",
+          "Layout and design",
+          "New pages or sections"
+        ]
+      },
+      "howItWorks": [
+        { "title": "Message us", "desc": "Tell us about your business" },
+        { "title": "We plan", "desc": "You share your content and details" },
+        { "title": "We build", "desc": "Your website and Growth upgrades are set up" },
+        { "title": "You go live", "desc": "Walkthrough call and launch" }
+      ],
+      "pdfUrl": "/packages/growth-7499-package.pdf",
+      "cta": {
+        "primaryLabel": "Get This Package",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'm interested in the Growth Website Package (₹7,499). Can you share more details?"
+      }
+    },
+    {
+      "id": "pro-website",
+      "slug": "pro-website-package",
+      "category": "portfolio",
+      "name": "Pro Website Package",
+      "tagline": "The complete portfolio website with full content control and stronger online reach.",
+      "price": 9999,
+      "currency": "INR",
+      "cadence": "one-time",
+      "worthValue": 11992,
+      "popular": true,
+      "badgeLabel": "Complete Package",
+      "quickFacts": [
+        { "value": "10-12 days", "label": "delivery" },
+        { "value": "7 main pages", "label": "+ project detail pages" },
+        { "value": "Full control", "label": "edit all website content" },
+        { "value": "7 days", "label": "free bug fixes" }
+      ],
+      "pagesCaption": "Includes Home, About, Projects and Contact, plus FAQ, one dedicated service page, Blog, and individual detail pages for up to 8 projects.",
+      "cardHighlights": [
+        "Everything in Growth",
+        "Blog — publish articles yourself",
+        "Full content editing, every page",
+        "Facebook, Instagram, LinkedIn & WhatsApp setup"
+      ],
+      "included": [
+        {
+          "title": "Email & WhatsApp Enquiries",
+          "desc": "Visitors can reach you directly through a contact form, email, and WhatsApp — no middleman."
+        },
+        {
+          "title": "Google & AI Search Ready",
+          "desc": "Built to get found on Google and show up correctly when people search using AI tools."
+        },
+        {
+          "title": "Visitor Tracking",
+          "desc": "See exactly who's visiting your site, how many visits you get, and where your traffic comes from."
+        },
+        {
+          "title": "Fast & Mobile-Friendly",
+          "desc": "Loads quickly and works smoothly on every screen size, from phones to desktops."
+        },
+        {
+          "title": "Up to 8 Projects, 5 Images Each",
+          "desc": "Showcase your work with individual detail pages, each holding up to 5 images."
+        },
+        {
+          "title": "5 Testimonials at Launch",
+          "desc": "Launch with real client feedback already in place to build trust with new visitors."
+        },
+        {
+          "title": "2 Rounds of Design Changes",
+          "desc": "Two rounds of revisions included before launch, so the final result matches what you want."
+        },
+        {
+          "title": "Free SSL Certificate",
+          "desc": "The secure padlock icon that protects visitor data and builds trust."
+        },
+        {
+          "title": "Free Hosting Included",
+          "desc": "Your site stays live on our platform — no separate hosting bill from us."
+        },
+        {
+          "title": "Live Walkthrough Call",
+          "desc": "We personally show you how to manage and update your own site."
+        },
+        {
+          "title": "7 Days of Free Bug Fixes",
+          "desc": "Any issues after launch are fixed free of charge for a full week."
+        },
+        {
+          "title": "Clear Pricing, No Surprises",
+          "desc": "One flat price covers everything listed here — nothing hidden, nothing added later without your sign-off."
+        }
+      ],
+      "alsoIncludedHeading": "Everything Included in Pro",
+      "alsoIncluded": [
+        {
+          "title": "FAQ Page",
+          "desc": "Answer up to 10 common questions before visitors even have to ask."
+        },
+        {
+          "title": "1 Dedicated Service Page",
+          "desc": "Explain one important service you offer in its own dedicated page."
+        },
+        {
+          "title": "Google Sheet Connection",
+          "desc": "Every form enquiry is saved automatically — nothing to miss in your inbox."
+        },
+        {
+          "title": "Google Business Profile Setup",
+          "desc": "Set up for Google Search and Maps, so local customers can find you."
+        },
+        {
+          "title": "Blog",
+          "desc": "Publish your own articles yourself and grow your organic reach over time."
+        },
+        {
+          "title": "Full Content Editing",
+          "desc": "Update all text and sections on every page yourself — no coding, nothing locked."
+        },
+        {
+          "title": "Social Media Business Setup",
+          "desc": "Facebook, Instagram, LinkedIn and WhatsApp Business profiles, all set up for you."
+        }
+      ],
+      "editPanelNote": "With Pro, you have full control — edit all text and sections on every page yourself, whenever you want. Nothing is locked.",
+      "howItWorks": [
+        { "title": "Message us", "desc": "Tell us about your business" },
+        { "title": "We plan", "desc": "You share your content and details" },
+        { "title": "We build", "desc": "Your website, editing tools and profiles are set up" },
+        { "title": "You go live", "desc": "Walkthrough call and launch" }
+      ],
+      "pdfUrl": "/packages/pro-9999-package.pdf",
+      "cta": {
+        "primaryLabel": "Get This Package",
+        "secondaryLabel": "Ask on WhatsApp",
+        "whatsappMessage": "Hi! I'm interested in the Pro Website Package (₹9,999). Can you share more details?"
       }
     },
     {
       "id": "basic-ecommerce",
       "slug": "basic-ecommerce-package",
+      "category": "ecommerce",
       "name": "Basic Ecommerce Package",
       "tagline": "A complete, ready-to-sell online store — live, launched, and built to match your brand. No template that looks like everyone else's, no confusing tech to manage.",
       "price": 11999,
@@ -189,6 +546,7 @@
     {
       "id": "stable-ecommerce",
       "slug": "stable-ecommerce-package",
+      "category": "ecommerce",
       "name": "Stable Ecommerce Package",
       "tagline": "A step up from Basic — a custom-designed store with the tools to run real promotions, keep customers coming back, and manage a growing team.",
       "price": 19999,
